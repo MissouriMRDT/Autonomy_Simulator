@@ -1,0 +1,1553 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/trees/protos/Pine.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/floors/protos/UnevenTerrain.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/buildings/protos/FastFoodRestaurant.proto"
+
+WorldInfo {
+  info [
+    "Benchmark objective: "
+    "learn how to program a robot."
+  ]
+  title "Robot Programming"
+  window "robot_programming"
+  basicTimeStep 20
+  FPS 30
+  optimalThreadCount 8
+  coordinateSystem "NUE"
+  gpsCoordinateSystem "WGS84"
+  gpsReference 37.9514 -91.769 0
+  contactProperties [
+    ContactProperties {
+      material2 "thymio body"
+      coulombFriction [
+        0.7
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.8318372957240009 0.12435146913942666 0.5409098127834688 4.6758844634485355
+  position -15.09849514183647 -0.5026216461088051 -4.165032873635208
+  follow "robot"
+  followType "None"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Pose {
+  translation 0 0 0.25
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.8
+        baseColorMap ImageTexture {
+          url [
+            "textures/target.png"
+          ]
+        }
+        roughness 0.5
+        metalness 0
+      }
+      geometry IndexedFaceSet {
+        coord Coordinate {
+          point [
+            0.125 0.0001 0.125
+            0.125 0.0001 -0.125
+            -0.125 0.0001 -0.125
+            -0.125 0.0001 0.125
+          ]
+        }
+        coordIndex [
+          0, 1, 2, 3
+        ]
+      }
+    }
+  ]
+}
+UnevenTerrain {
+  translation 6.54561e-15 -29.48 6.93889e-18
+  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0943951023931957
+  size 100 100 50
+  randomSeed 987654321
+}
+Pine {
+  translation 5.84 -2.81 -6.64
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(14)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -5.62 -4.19 3.25
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(6)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -4.15 -4.39 -1.96
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(5)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation 0.86 -3.43 -6.2
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(7)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation 9.28 -2.98 -3.59
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(13)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation 0.95 -2.9 -0.370002
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(3)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation 4.27 -2.09 4.12
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(1)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation 4.27 -2.09 23.58
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(2)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation 1.63 -2.09 24.36
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(4)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation 3.21 -2.09 24.36
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(8)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -12.21 1.18 24.36
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(9)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation 4.89 -0.37 24.36
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(25)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation 5.39 1.18 28.8
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(26)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -12.21 3.48 33.83
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(10)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -44.12 -7.72 33.83
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(11)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -44.12 -8.71 31.19
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(12)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -44.12 -9.79 27.29
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(15)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -44.12 -9.79 24.7
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(16)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -44.12 -10.09 22.54
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(17)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -44.12 -10.09 37.18
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(18)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -44.12 -7.31 37.07
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(19)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -44.12 -10.54 20.19
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(20)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -46.34 -10.54 21.3
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(21)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -46.34 -10.54 27.13
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(22)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -46.34 -10.54 34.29
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(23)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation -46.34 -11.13 15.21
+  rotation 1 0 0 -1.5707953071795862
+  name "pine tree(24)"
+  enableBoundingObject FALSE
+}
+Pine {
+  translation 7.05 -2.1 -0.370002
+  rotation 1 0 0 -1.5707953071795862
+  enableBoundingObject FALSE
+}
+Robot {
+  translation -9.307203741433836 -4.499928976339681 -0.48980954507833574
+  rotation -0.3572818435259743 0.9174664854995135 0.17494265423804586 0.5287190760522056
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 0.03831500576345612
+        anchor 0.75 -0.2 0.55
+      }
+      device [
+        RotationalMotor {
+          name "motor1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.75 -0.2 0.55
+        rotation 0.01915274686005351 0.9996331036338046 0.0191528172121496 1.5711669636806345
+        children [
+          DEF WHEEL Shape {
+            appearance Appearance {
+              material Material {
+              }
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.2
+            }
+          }
+        ]
+        name "FrontLeft"
+        boundingObject USE WHEEL
+        physics DEF WHEEL_PHYSICS Physics {
+        }
+        linearVelocity -9.337821466962252e-05 -3.100369099236367e-05 -0.000104546222424556
+        angularVelocity -4.7272680865176126e-05 -1.781815923362188e-06 2.319484428432581e-05
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 0.03823513788583212
+        anchor -0.75 -0.2 0.55
+      }
+      device [
+        RotationalMotor {
+          name "motor2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.75 -0.2 0.55
+        rotation 0.019128133100650088 0.9996343388025691 0.01911290691742985 1.5703657279969276
+        children [
+          USE WHEEL
+        ]
+        name "FrontRight"
+        boundingObject USE WHEEL
+        physics USE WHEEL_PHYSICS
+        linearVelocity -9.312116127328229e-05 -2.8253641931665937e-05 -0.0001038129079418339
+        angularVelocity -4.684713568773896e-05 -1.7607122252572775e-06 2.296721716672269e-05
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 0.03827037585139778
+        anchor 0.75 -0.2 -0.55
+      }
+      device [
+        RotationalMotor {
+          name "motor3"
+        }
+      ]
+      endPoint Solid {
+        translation 0.75 -0.2 -0.55
+        rotation 0.01913044833689791 0.9996339576086105 0.019130518607088184 1.5711661093928215
+        children [
+          USE WHEEL
+        ]
+        name "BackLeft"
+        boundingObject USE WHEEL
+        physics USE WHEEL_PHYSICS
+        linearVelocity -9.405718315850007e-05 -3.226456960083699e-05 -0.00010389686113284579
+        angularVelocity -4.728347194649921e-05 -1.7823041274298443e-06 2.3200760959667296e-05
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 0.038241241235443854
+        anchor -0.75 -0.2 -0.55
+      }
+      device [
+        RotationalMotor {
+          name "motor4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.7499999999999979 -0.2000000000000003 -0.5500000000000017
+        rotation 0.01911589173583802 0.9996345145510793 0.01911596195255867 1.5711655522466048
+        children [
+          USE WHEEL
+        ]
+        name "BackRight"
+        boundingObject USE WHEEL
+        physics USE WHEEL_PHYSICS
+        linearVelocity -9.38071907660057e-05 -2.9467139329987436e-05 -0.00010317098273306505
+        angularVelocity -4.684894929331093e-05 -1.7608064251905621e-06 2.29681875354825e-05
+      }
+    }
+    Transform {
+      translation 0.63 0.139995 0.47
+      rotation -0.5773489358550934 0.5773519358547601 0.5773499358549823 2.09439
+      scale 0.03 0.03 0.03
+      children [
+        DEF BODY Shape {
+          appearance PBRAppearance {
+            baseColor 0.917647 0.145098 0.145098
+            roughness 1
+            metalness 0
+          }
+          geometry Mesh {
+            url [
+              "../protos/Frame.stl"
+            ]
+          }
+          castShadows FALSE
+        }
+      ]
+    }
+    Accelerometer {
+      rotation -5.07515e-07 1 5.07515e-07 -1.5707953071795862
+    }
+    Lidar {
+      translation 0 0.4 1
+      rotation 0.5773509358560258 0.577349935856137 0.577349935856137 -2.094395307179586
+      horizontalResolution 813
+      fieldOfView 1.82
+      verticalFieldOfView 0.9
+      numberOfLayers 404
+      maxRange 10
+    }
+    Pen {
+      translation 0 -0.016 0
+      rotation -1 0 0 1.5707963267948966
+    }
+    Compass {
+      rotation 0 -1 0 1.5708
+    }
+    GPS {
+      rotation 0 -1 0 1.5708
+    }
+    RangeFinder {
+      translation 0 0.4 1
+      rotation -0.5773489358556708 -0.5773509358554485 -0.5773509358554486 2.0944
+      fieldOfView 1.85
+      width 640
+      height 360
+      maxRange 40
+    }
+    InertialUnit {
+      rotation 0 -1 0 1.5708
+    }
+    Camera {
+      translation 0 0.4 1
+      rotation -0.5773492478224381 -0.5773507798725421 -0.577350779872542 2.0943966344446547
+      fieldOfView 1.91986
+      width 1920
+      height 1080
+    }
+  ]
+  boundingObject Box {
+    size 1 0.0119832 1
+  }
+  physics Physics {
+    density -1
+    mass 1
+  }
+  controller "rover_controller"
+  linearVelocity -9.339065066563457e-05 -3.0277296875347305e-05 -0.00010421065461196477
+  angularVelocity -1.871128572958896e-06 4.596810403830743e-07 -1.0979299228347484e-06
+}
+DEF AR_Tag Solid {
+  translation -30.5252 7.95178 43.2884
+  rotation 0.948570787090465 -0.15548096510183487 -0.27575193810665716 -1.6838053071795862
+  children [
+    Solid {
+      children [
+        DEF SHAPE Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "textures/Marker0.png"
+              ]
+            }
+            roughness 1
+            metalness 0
+            name "Marker0Mat"
+          }
+          geometry IndexedFaceSet {
+            coord Coordinate {
+              point [
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 1 1.99999
+                -1 -1 1.99999
+                0.999999 -1 1.99999
+                1 0.999999 1.99999
+                0.999999 -1 1.99999
+                1 -1 -9.41753e-06
+                0.999999 -1 1.99999
+                -1 -1 1.99999
+                -1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 -1 1.99999
+                -1 1 1.99999
+                1 1 -9.41753e-06
+                -1 1 -9.41753e-06
+                -1 1 1.99999
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+              ]
+            }
+            normal Normal {
+              vector [
+                0 0 -1
+                0 0 -1
+                0 0 -1
+                0 0 1
+                0 0 1
+                0 0 1
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                0 0 -1
+                0 0 1
+                1 0 -2.38419e-07
+                0 -1 -2.98023e-07
+                -1 2.38419e-07 0
+                2.98023e-07 1 2.38418e-07
+              ]
+            }
+            texCoord TextureCoordinate {
+              point [
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 0.994019
+                9.96856e-05 0.994019
+                0.000100079 9.97642e-05
+                0 0
+                0 0
+                0 0
+                9.96856e-05 0.994019
+                9.98823e-05 9.96856e-05
+                0.9999 9.98429e-05
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 9.96856e-05
+                0 0
+                0.9999 0.994019
+                0 0
+              ]
+            }
+            coordIndex [
+              0, 1, 2, -1, 3, 4, 5, -1, 6, 7, 8, -1, 9, 10, 11, -1, 12, 13, 14, -1, 15, 16, 17, -1, 18, 0, 2, -1, 19, 3, 5, -1, 20, 6, 8, -1, 21, 9, 11, -1, 22, 12, 14, -1, 23, 15, 17, -1
+            ]
+          }
+        }
+      ]
+      name "Marker0"
+      boundingObject USE SHAPE
+    }
+    Solid {
+      children [
+        DEF SHAPE Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "textures/Marker0.png"
+              ]
+            }
+            roughness 1
+            metalness 0
+            name "Marker0Mat"
+          }
+          geometry IndexedFaceSet {
+            coord Coordinate {
+              point [
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 1 1.99999
+                -1 -1 1.99999
+                0.999999 -1 1.99999
+                1 0.999999 1.99999
+                0.999999 -1 1.99999
+                1 -1 -9.41753e-06
+                0.999999 -1 1.99999
+                -1 -1 1.99999
+                -1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 -1 1.99999
+                -1 1 1.99999
+                1 1 -9.41753e-06
+                -1 1 -9.41753e-06
+                -1 1 1.99999
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+              ]
+            }
+            normal Normal {
+              vector [
+                0 0 -1
+                0 0 -1
+                0 0 -1
+                0 0 1
+                0 0 1
+                0 0 1
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                0 0 -1
+                0 0 1
+                1 0 -2.38419e-07
+                0 -1 -2.98023e-07
+                -1 2.38419e-07 0
+                2.98023e-07 1 2.38418e-07
+              ]
+            }
+            texCoord TextureCoordinate {
+              point [
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 0.994019
+                9.96856e-05 0.994019
+                0.000100079 9.97642e-05
+                0 0
+                0 0
+                0 0
+                9.96856e-05 0.994019
+                9.98823e-05 9.96856e-05
+                0.9999 9.98429e-05
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 9.96856e-05
+                0 0
+                0.9999 0.994019
+                0 0
+              ]
+            }
+            coordIndex [
+              0, 1, 2, -1, 3, 4, 5, -1, 6, 7, 8, -1, 9, 10, 11, -1, 12, 13, 14, -1, 15, 16, 17, -1, 18, 0, 2, -1, 19, 3, 5, -1, 20, 6, 8, -1, 21, 9, 11, -1, 22, 12, 14, -1, 23, 15, 17, -1
+            ]
+          }
+        }
+      ]
+      name "Marker0(1)"
+      boundingObject USE SHAPE
+    }
+  ]
+  name "solid(5)"
+  description "AR Tag"
+}
+DEF AR_Tag Solid {
+  translation 5.6384 -1.75 -2.92986
+  rotation -0.18615592140852352 0.694748706690358 0.6947447066920468 2.77348
+  children [
+    Solid {
+      children [
+        DEF SHAPE Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "textures/Marker0.png"
+              ]
+            }
+            roughness 1
+            metalness 0
+            name "Marker0Mat"
+          }
+          geometry IndexedFaceSet {
+            coord Coordinate {
+              point [
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 1 1.99999
+                -1 -1 1.99999
+                0.999999 -1 1.99999
+                1 0.999999 1.99999
+                0.999999 -1 1.99999
+                1 -1 -9.41753e-06
+                0.999999 -1 1.99999
+                -1 -1 1.99999
+                -1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 -1 1.99999
+                -1 1 1.99999
+                1 1 -9.41753e-06
+                -1 1 -9.41753e-06
+                -1 1 1.99999
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+              ]
+            }
+            normal Normal {
+              vector [
+                0 0 -1
+                0 0 -1
+                0 0 -1
+                0 0 1
+                0 0 1
+                0 0 1
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                0 0 -1
+                0 0 1
+                1 0 -2.38419e-07
+                0 -1 -2.98023e-07
+                -1 2.38419e-07 0
+                2.98023e-07 1 2.38418e-07
+              ]
+            }
+            texCoord TextureCoordinate {
+              point [
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 0.994019
+                9.96856e-05 0.994019
+                0.000100079 9.97642e-05
+                0 0
+                0 0
+                0 0
+                9.96856e-05 0.994019
+                9.98823e-05 9.96856e-05
+                0.9999 9.98429e-05
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 9.96856e-05
+                0 0
+                0.9999 0.994019
+                0 0
+              ]
+            }
+            coordIndex [
+              0, 1, 2, -1, 3, 4, 5, -1, 6, 7, 8, -1, 9, 10, 11, -1, 12, 13, 14, -1, 15, 16, 17, -1, 18, 0, 2, -1, 19, 3, 5, -1, 20, 6, 8, -1, 21, 9, 11, -1, 22, 12, 14, -1, 23, 15, 17, -1
+            ]
+          }
+        }
+      ]
+      name "Marker0"
+      boundingObject USE SHAPE
+    }
+  ]
+  name "solid(1)"
+  description "AR Tag"
+}
+DEF AR_Tag Solid {
+  translation 17.0934 -4.57 -37.9779
+  rotation 0.5773499358526729 0.5773479358528951 0.5773529358523396 -2.094405307179586
+  children [
+    Solid {
+      children [
+        DEF SHAPE Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "textures/Marker0.png"
+              ]
+            }
+            roughness 1
+            metalness 0
+            name "Marker0Mat"
+          }
+          geometry IndexedFaceSet {
+            coord Coordinate {
+              point [
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 1 1.99999
+                -1 -1 1.99999
+                0.999999 -1 1.99999
+                1 0.999999 1.99999
+                0.999999 -1 1.99999
+                1 -1 -9.41753e-06
+                0.999999 -1 1.99999
+                -1 -1 1.99999
+                -1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 -1 1.99999
+                -1 1 1.99999
+                1 1 -9.41753e-06
+                -1 1 -9.41753e-06
+                -1 1 1.99999
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+              ]
+            }
+            normal Normal {
+              vector [
+                0 0 -1
+                0 0 -1
+                0 0 -1
+                0 0 1
+                0 0 1
+                0 0 1
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                0 0 -1
+                0 0 1
+                1 0 -2.38419e-07
+                0 -1 -2.98023e-07
+                -1 2.38419e-07 0
+                2.98023e-07 1 2.38418e-07
+              ]
+            }
+            texCoord TextureCoordinate {
+              point [
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 0.994019
+                9.96856e-05 0.994019
+                0.000100079 9.97642e-05
+                0 0
+                0 0
+                0 0
+                9.96856e-05 0.994019
+                9.98823e-05 9.96856e-05
+                0.9999 9.98429e-05
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 9.96856e-05
+                0 0
+                0.9999 0.994019
+                0 0
+              ]
+            }
+            coordIndex [
+              0, 1, 2, -1, 3, 4, 5, -1, 6, 7, 8, -1, 9, 10, 11, -1, 12, 13, 14, -1, 15, 16, 17, -1, 18, 0, 2, -1, 19, 3, 5, -1, 20, 6, 8, -1, 21, 9, 11, -1, 22, 12, 14, -1, 23, 15, 17, -1
+            ]
+          }
+        }
+      ]
+      name "Marker0"
+      boundingObject USE SHAPE
+    }
+  ]
+  name "solid(4)"
+  description "AR Tag"
+}
+DEF AR_Tag Solid {
+  translation 17.7373 2.62025 22.958
+  rotation 0.5773509358467882 -0.577353935846455 -0.577345935847344 -2.0943853071795866
+  children [
+    Solid {
+      children [
+        DEF SHAPE Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "textures/Marker0.png"
+              ]
+            }
+            roughness 1
+            metalness 0
+            name "Marker0Mat"
+          }
+          geometry IndexedFaceSet {
+            coord Coordinate {
+              point [
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 1 1.99999
+                -1 -1 1.99999
+                0.999999 -1 1.99999
+                1 0.999999 1.99999
+                0.999999 -1 1.99999
+                1 -1 -9.41753e-06
+                0.999999 -1 1.99999
+                -1 -1 1.99999
+                -1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 -1 1.99999
+                -1 1 1.99999
+                1 1 -9.41753e-06
+                -1 1 -9.41753e-06
+                -1 1 1.99999
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+              ]
+            }
+            normal Normal {
+              vector [
+                0 0 -1
+                0 0 -1
+                0 0 -1
+                0 0 1
+                0 0 1
+                0 0 1
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                0 0 -1
+                0 0 1
+                1 0 -2.38419e-07
+                0 -1 -2.98023e-07
+                -1 2.38419e-07 0
+                2.98023e-07 1 2.38418e-07
+              ]
+            }
+            texCoord TextureCoordinate {
+              point [
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 0.994019
+                9.96856e-05 0.994019
+                0.000100079 9.97642e-05
+                0 0
+                0 0
+                0 0
+                9.96856e-05 0.994019
+                9.98823e-05 9.96856e-05
+                0.9999 9.98429e-05
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 9.96856e-05
+                0 0
+                0.9999 0.994019
+                0 0
+              ]
+            }
+            coordIndex [
+              0, 1, 2, -1, 3, 4, 5, -1, 6, 7, 8, -1, 9, 10, 11, -1, 12, 13, 14, -1, 15, 16, 17, -1, 18, 0, 2, -1, 19, 3, 5, -1, 20, 6, 8, -1, 21, 9, 11, -1, 22, 12, 14, -1, 23, 15, 17, -1
+            ]
+          }
+        }
+      ]
+      name "Marker0"
+      boundingObject USE SHAPE
+    }
+  ]
+  name "solid(6)"
+  description "AR Tag"
+}
+DEF AR_Tag Solid {
+  translation 16.8877 -4.44 -10.7835
+  rotation -0.5773509358560258 0.577349935856137 0.577349935856137 2.0944
+  children [
+    Solid {
+      children [
+        DEF SHAPE Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "textures/tag04.png"
+              ]
+            }
+            roughness 1
+            metalness 0
+            name "Marker0Mat"
+          }
+          geometry IndexedFaceSet {
+            coord Coordinate {
+              point [
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 1 1.99999
+                -1 -1 1.99999
+                0.999999 -1 1.99999
+                1 0.999999 1.99999
+                0.999999 -1 1.99999
+                1 -1 -9.41753e-06
+                0.999999 -1 1.99999
+                -1 -1 1.99999
+                -1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 -1 1.99999
+                -1 1 1.99999
+                1 1 -9.41753e-06
+                -1 1 -9.41753e-06
+                -1 1 1.99999
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+              ]
+            }
+            normal Normal {
+              vector [
+                0 0 -1
+                0 0 -1
+                0 0 -1
+                0 0 1
+                0 0 1
+                0 0 1
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                0 0 -1
+                0 0 1
+                1 0 -2.38419e-07
+                0 -1 -2.98023e-07
+                -1 2.38419e-07 0
+                2.98023e-07 1 2.38418e-07
+              ]
+            }
+            texCoord TextureCoordinate {
+              point [
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 0.994019
+                9.96856e-05 0.994019
+                0.000100079 9.97642e-05
+                0 0
+                0 0
+                0 0
+                9.96856e-05 0.994019
+                9.98823e-05 9.96856e-05
+                0.9999 9.98429e-05
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 9.96856e-05
+                0 0
+                0.9999 0.994019
+                0 0
+              ]
+            }
+            coordIndex [
+              0, 1, 2, -1, 3, 4, 5, -1, 6, 7, 8, -1, 9, 10, 11, -1, 12, 13, 14, -1, 15, 16, 17, -1, 18, 0, 2, -1, 19, 3, 5, -1, 20, 6, 8, -1, 21, 9, 11, -1, 22, 12, 14, -1, 23, 15, 17, -1
+            ]
+          }
+        }
+      ]
+      name "Marker0"
+      boundingObject USE SHAPE
+    }
+  ]
+  name "solid(2)"
+  description "AR Tag"
+}
+DEF AR_Tag Solid {
+  translation -13.9122 -6.01 -6.66058
+  rotation 0.9831059489266643 0.12942899327603452 0.12942499327624235 -1.5878353071795859
+  children [
+    Solid {
+      children [
+        DEF SHAPE Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "textures/tag04.png"
+              ]
+            }
+            roughness 1
+            metalness 0
+            name "Marker0Mat"
+          }
+          geometry IndexedFaceSet {
+            coord Coordinate {
+              point [
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 1 1.99999
+                -1 -1 1.99999
+                0.999999 -1 1.99999
+                1 0.999999 1.99999
+                0.999999 -1 1.99999
+                1 -1 -9.41753e-06
+                0.999999 -1 1.99999
+                -1 -1 1.99999
+                -1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 -1 1.99999
+                -1 1 1.99999
+                1 1 -9.41753e-06
+                -1 1 -9.41753e-06
+                -1 1 1.99999
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+              ]
+            }
+            normal Normal {
+              vector [
+                0 0 -1
+                0 0 -1
+                0 0 -1
+                0 0 1
+                0 0 1
+                0 0 1
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                0 0 -1
+                0 0 1
+                1 0 -2.38419e-07
+                0 -1 -2.98023e-07
+                -1 2.38419e-07 0
+                2.98023e-07 1 2.38418e-07
+              ]
+            }
+            texCoord TextureCoordinate {
+              point [
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 0.994019
+                9.96856e-05 0.994019
+                0.000100079 9.97642e-05
+                0 0
+                0 0
+                0 0
+                9.96856e-05 0.994019
+                9.98823e-05 9.96856e-05
+                0.9999 9.98429e-05
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 9.96856e-05
+                0 0
+                0.9999 0.994019
+                0 0
+              ]
+            }
+            coordIndex [
+              0, 1, 2, -1, 3, 4, 5, -1, 6, 7, 8, -1, 9, 10, 11, -1, 12, 13, 14, -1, 15, 16, 17, -1, 18, 0, 2, -1, 19, 3, 5, -1, 20, 6, 8, -1, 21, 9, 11, -1, 22, 12, 14, -1, 23, 15, 17, -1
+            ]
+          }
+        }
+      ]
+      name "Marker0"
+      boundingObject USE SHAPE
+    }
+  ]
+  name "solid(12)"
+  description "AR Tag"
+}
+DEF AR_Tag Solid {
+  translation 19.3377 -5.09 -10.6535
+  rotation -0.5773509358560258 0.577349935856137 0.577349935856137 2.0944
+  children [
+    Solid {
+      children [
+        DEF SHAPE Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "textures/Marker0.png"
+              ]
+            }
+            roughness 1
+            metalness 0
+            name "Marker0Mat"
+          }
+          geometry IndexedFaceSet {
+            coord Coordinate {
+              point [
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 1 1.99999
+                -1 -1 1.99999
+                0.999999 -1 1.99999
+                1 0.999999 1.99999
+                0.999999 -1 1.99999
+                1 -1 -9.41753e-06
+                0.999999 -1 1.99999
+                -1 -1 1.99999
+                -1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 -1 1.99999
+                -1 1 1.99999
+                1 1 -9.41753e-06
+                -1 1 -9.41753e-06
+                -1 1 1.99999
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+              ]
+            }
+            normal Normal {
+              vector [
+                0 0 -1
+                0 0 -1
+                0 0 -1
+                0 0 1
+                0 0 1
+                0 0 1
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                0 0 -1
+                0 0 1
+                1 0 -2.38419e-07
+                0 -1 -2.98023e-07
+                -1 2.38419e-07 0
+                2.98023e-07 1 2.38418e-07
+              ]
+            }
+            texCoord TextureCoordinate {
+              point [
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 0.994019
+                9.96856e-05 0.994019
+                0.000100079 9.97642e-05
+                0 0
+                0 0
+                0 0
+                9.96856e-05 0.994019
+                9.98823e-05 9.96856e-05
+                0.9999 9.98429e-05
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 9.96856e-05
+                0 0
+                0.9999 0.994019
+                0 0
+              ]
+            }
+            coordIndex [
+              0, 1, 2, -1, 3, 4, 5, -1, 6, 7, 8, -1, 9, 10, 11, -1, 12, 13, 14, -1, 15, 16, 17, -1, 18, 0, 2, -1, 19, 3, 5, -1, 20, 6, 8, -1, 21, 9, 11, -1, 22, 12, 14, -1, 23, 15, 17, -1
+            ]
+          }
+        }
+      ]
+      name "Marker0"
+      boundingObject USE SHAPE
+    }
+    Solid {
+      children [
+        DEF SHAPE Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "textures/Marker0.png"
+              ]
+            }
+            roughness 1
+            metalness 0
+            name "Marker0Mat"
+          }
+          geometry IndexedFaceSet {
+            coord Coordinate {
+              point [
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 1 1.99999
+                -1 -1 1.99999
+                0.999999 -1 1.99999
+                1 0.999999 1.99999
+                0.999999 -1 1.99999
+                1 -1 -9.41753e-06
+                0.999999 -1 1.99999
+                -1 -1 1.99999
+                -1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 -1 1.99999
+                -1 1 1.99999
+                1 1 -9.41753e-06
+                -1 1 -9.41753e-06
+                -1 1 1.99999
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+              ]
+            }
+            normal Normal {
+              vector [
+                0 0 -1
+                0 0 -1
+                0 0 -1
+                0 0 1
+                0 0 1
+                0 0 1
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                0 0 -1
+                0 0 1
+                1 0 -2.38419e-07
+                0 -1 -2.98023e-07
+                -1 2.38419e-07 0
+                2.98023e-07 1 2.38418e-07
+              ]
+            }
+            texCoord TextureCoordinate {
+              point [
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 0.994019
+                9.96856e-05 0.994019
+                0.000100079 9.97642e-05
+                0 0
+                0 0
+                0 0
+                9.96856e-05 0.994019
+                9.98823e-05 9.96856e-05
+                0.9999 9.98429e-05
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 9.96856e-05
+                0 0
+                0.9999 0.994019
+                0 0
+              ]
+            }
+            coordIndex [
+              0, 1, 2, -1, 3, 4, 5, -1, 6, 7, 8, -1, 9, 10, 11, -1, 12, 13, 14, -1, 15, 16, 17, -1, 18, 0, 2, -1, 19, 3, 5, -1, 20, 6, 8, -1, 21, 9, 11, -1, 22, 12, 14, -1, 23, 15, 17, -1
+            ]
+          }
+        }
+      ]
+      name "Marker0(1)"
+      boundingObject USE SHAPE
+    }
+  ]
+  name "solid(3)"
+  description "AR Tag"
+}
+DEF AR_Tag Solid {
+  translation -13.3725 -6 -8.65552
+  rotation -0.09269161202508938 0.7040600913392846 0.7040650913399332 2.95673
+  children [
+    Solid {
+      children [
+        DEF SHAPE Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "textures/tag05.png"
+              ]
+            }
+            roughness 1
+            metalness 0
+            name "Marker0Mat"
+          }
+          geometry IndexedFaceSet {
+            coord Coordinate {
+              point [
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 1 1.99999
+                -1 -1 1.99999
+                0.999999 -1 1.99999
+                1 0.999999 1.99999
+                0.999999 -1 1.99999
+                1 -1 -9.41753e-06
+                0.999999 -1 1.99999
+                -1 -1 1.99999
+                -1 -1 -9.41753e-06
+                -1 -1 -9.41753e-06
+                -1 -1 1.99999
+                -1 1 1.99999
+                1 1 -9.41753e-06
+                -1 1 -9.41753e-06
+                -1 1 1.99999
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+                1 1 -9.41753e-06
+                1 -1 -9.41753e-06
+                -1 1 -9.41753e-06
+                1 0.999999 1.99999
+              ]
+            }
+            normal Normal {
+              vector [
+                0 0 -1
+                0 0 -1
+                0 0 -1
+                0 0 1
+                0 0 1
+                0 0 1
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                1 -5.66244e-07 3.27825e-07
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -4.76837e-07 -1 0
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                -1 2.38419e-07 -1.19209e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                2.38419e-07 1 1.78814e-07
+                0 0 -1
+                0 0 1
+                1 0 -2.38419e-07
+                0 -1 -2.98023e-07
+                -1 2.38419e-07 0
+                2.98023e-07 1 2.38418e-07
+              ]
+            }
+            texCoord TextureCoordinate {
+              point [
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 0.994019
+                9.96856e-05 0.994019
+                0.000100079 9.97642e-05
+                0 0
+                0 0
+                0 0
+                9.96856e-05 0.994019
+                9.98823e-05 9.96856e-05
+                0.9999 9.98429e-05
+                0 0
+                0 0
+                0 0
+                0 0
+                0 0
+                0.9999 9.96856e-05
+                0 0
+                0.9999 0.994019
+                0 0
+              ]
+            }
+            coordIndex [
+              0, 1, 2, -1, 3, 4, 5, -1, 6, 7, 8, -1, 9, 10, 11, -1, 12, 13, 14, -1, 15, 16, 17, -1, 18, 0, 2, -1, 19, 3, 5, -1, 20, 6, 8, -1, 21, 9, 11, -1, 22, 12, 14, -1, 23, 15, 17, -1
+            ]
+          }
+        }
+      ]
+      name "Marker0"
+      boundingObject USE SHAPE
+    }
+  ]
+  name "tag5"
+  description "AR Tag"
+}
+FastFoodRestaurant {
+  translation -20.1815 -8.8437 -44.6761
+  rotation 0.7071067956638433 0.5773498331603562 0.40824888202629633 -2.094395307179586
+}

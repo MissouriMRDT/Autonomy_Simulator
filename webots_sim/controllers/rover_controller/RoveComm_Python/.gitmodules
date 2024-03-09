@@ -1,0 +1,4 @@
+[submodule "manifest"]
+	path = manifest
+	url = https://github.com/missourimrdt/rovecomm_base
+	branch = embedded-2024

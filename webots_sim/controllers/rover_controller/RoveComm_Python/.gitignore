@@ -1,0 +1,5 @@
+# Python temp files
+*.pyc
+
+#Pytest files
+.pytest_cache/

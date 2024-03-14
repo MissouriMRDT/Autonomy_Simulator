@@ -65,6 +65,31 @@
 ###
 ###-----------------------------------------------------------------------------
 
+# Recursively find .cpp files in current directory.
+CXX_SOURCES = $(shell find $(SRC_DIR) -name './*.cpp')
+## Link Libraries.
+INCLUDE = -I"./RoveComm_CPP/include/"
+LIBRARIES = -L"./RoveComm_CPP/lib" -lRoveComm_CPP
+
+
+# Download and run the script package if it doesn't exist.
+ROVECOMM_VERSION := v24.2.1
+ROVECOMM_INSTALLER := RoveComm_CPP_AMD64.sh
+
+ifeq ($(wildcard RoveComm_CPP_AMD64.sh),)
+    $(info Downloading RoveComm installer...)
+    $(shell curl -LOk https://github.com/MissouriMRDT/RoveComm_CPP/releases/download/$(ROVECOMM_VERSION)/RoveComm_CPP_AMD64.sh)
+endif
+
+ifeq ($(wildcard RoveComm_CPP),)
+    $(info Installing RoveComm...)
+    _tmp := $(shell sh ./RoveComm_CPP_AMD64.sh --skip-license)
+    _tmp := $(shell mkdir -p RoveComm_CPP/)
+    _tmp := $(shell mv external 'include' lib RoveComm_CPP/)
+else
+    $(info RoveComm is already installed.)
+endif
+
 ### Do not modify: this includes Webots global Makefile.include
 null :=
 space := $(null) $(null)

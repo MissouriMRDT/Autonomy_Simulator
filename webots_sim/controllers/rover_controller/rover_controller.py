@@ -11,8 +11,6 @@ rovecomm_node = RoveComm(11001, ("", 11112))
 
 # Get pointer to the robot.
 robot = Robot()
-keyboard = Keyboard()
-keyboard.enable(64)
 
 # Initialize the rover class, with our rovecomm node
 rover = Rover(robot, rovecomm_node)

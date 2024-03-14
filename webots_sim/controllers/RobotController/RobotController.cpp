@@ -6,8 +6,9 @@
 
 #include <webots/Robot.hpp>
 #include <webots/Motor.hpp>
+#include <RoveComm/RoveComm.h>
 
-#define TIME_STEP_MS 64
+#define TIME_STEP_MS 16
 ///////////////////////////////////////////////////////////////////////////////////////
 
 // This is the main program of your controller.
@@ -20,6 +21,22 @@
 int main(int argc, char **argv) {
   // create the Robot instance.
   webots::Robot *pRobot = new webots::Robot();
+  
+  // Create RoveComm Node.
+  rovecomm::RoveCommUDP* pRoveCommNode = new rovecomm::RoveCommUDP();
+  // Initialize RoveComm Node.
+  unsigned int unRoveCommPort = 11001;
+  bool bRoveCommUDPInitSuccess = pRoveCommNode->InitUDPSocket(unRoveCommPort);
+  if (bRoveCommUDPInitSuccess)
+  {
+      // Print status.
+      std::cout << "RoveCommUDP node initialized successfully on port " << unRoveCommPort << std::endl; 
+  }
+  else
+  {
+      // Print status.
+      std::cout << "Failed to initialize RoveCommUDP node on port " << unRoveCommPort << std::endl;
+  }
   
   // Get motor references.
   webots::Motor* pFrontLeftMotor = pRobot->getMotor("motor1");
@@ -39,18 +56,15 @@ int main(int argc, char **argv) {
 
   // Main loop:
   // - perform simulation steps until Webots is stopping the controller
-  while (pRobot->step(TIME_STEP_MS) != -1) {
+  while (pRobot->step(TIME_STEP_MS) != -1) 
+  {
       // Read the sensors:
       // Enter here functions to read sensor data, like:
       //  double val = ds->getValue();
   
       // Process sensor data here.
-  
-      // Enter here functions to send actuator commands, like:
-      pFrontLeftMotor->setVelocity(10.0);
-      pFrontRightMotor->setVelocity(10.0);
-      pBackLeftMotor->setVelocity(10.0);
-      pBackRightMotor->setVelocity(10.0);
+ 
+      
   };
 
   // Cleanup code.

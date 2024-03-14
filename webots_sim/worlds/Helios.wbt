@@ -14,6 +14,7 @@ WorldInfo {
   title "Robot Programming"
   window "robot_programming"
   basicTimeStep 16
+  FPS 30
   optimalThreadCount 8
   coordinateSystem "NUE"
   gpsCoordinateSystem "WGS84"
@@ -28,8 +29,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.028513647926657216 0.6867925594131863 0.726293984703577 3.513736192100101
-  position -2.861991305744711 -3.0400815157462375 -20.27377695119082
+  orientation 0.7215590237795182 0.12435146913942471 0.6810941838873793 4.675884463448539
+  position -5.418265885780334 14.945822938108497 -49.098439920672625
   follow "robot"
 }
 TexturedBackground {
@@ -76,13 +77,11 @@ Pine {
   translation 5.84 -2.81 -6.64
   rotation 1 0 0 -1.5707953071795862
   name "pine tree(14)"
-  enableBoundingObject FALSE
 }
 Pine {
   translation -5.62 -4.19 3.25
   rotation 1 0 0 -1.5707953071795862
   name "pine tree(6)"
-  enableBoundingObject FALSE
 }
 Pine {
   translation -4.15 -4.39 -1.96
@@ -234,12 +233,12 @@ Pine {
   enableBoundingObject FALSE
 }
 Robot {
-  translation -9.5119003517129 -4.922728452291126 -19.392694172365267
-  rotation 0.7090929343114494 0.3933059411525087 0.5852329853688341 0.4628253671905164
+  translation 6.86864890356682 -0.21133674674646988 -33.53112787034782
+  rotation -0.15960637958606683 -0.9846167598623072 0.07110302239483114 1.7334505588600795
   children [
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 2093.9564583851547
+        position 16068.937782453506
         anchor 0.75 -0.2 0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -253,7 +252,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0.75 -0.2 0.55
-        rotation -0.5930169759876244 -0.5446642533394329 -0.5930191542645912 4.139064449120308
+        rotation -0.7028662570456938 -0.1093362708305417 -0.7028688388223274 3.3593992308428446
         children [
           DEF WHEEL Shape {
             appearance Appearance {
@@ -271,13 +270,13 @@ Robot {
         boundingObject USE WHEEL
         physics DEF WHEEL_PHYSICS Physics {
         }
-        linearVelocity 0.35941653928402084 -0.31495304732335977 1.9164109610717117
-        angularVelocity 9.36148724897849 2.8639512080169474 -1.2735358934452963
+        linearVelocity -0.012817012974050374 -0.01062609191179377 0.0018268121478166037
+        angularVelocity 0.0006468368710105234 0.014668907015259473 0.06530222323421882
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 1158.547174801209
+        position 18739.161951179256
         anchor -0.75 -0.2 0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -291,20 +290,20 @@ Robot {
       ]
       endPoint Solid {
         translation -0.75 -0.2 0.55
-        rotation 0.6849226841670869 0.25001676552263896 0.6843774789331911 2.6512288729125673
+        rotation 0.6987848741319073 0.15548785710751561 0.6982286344576305 2.832845416751286
         children [
           USE WHEEL
         ]
         name "FrontRight"
         boundingObject USE WHEEL
         physics USE WHEEL_PHYSICS
-        linearVelocity 0.3699789031609806 -0.3606590745401211 1.904929558423613
-        angularVelocity 9.361187716215353 2.864038728877898 -1.2733801966363687
+        linearVelocity -0.013107256154329986 3.565457443389908e-05 -0.00020817763837813267
+        angularVelocity 0.00032201309619484474 0.015105448885074643 0.06712679860052949
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 1131.8959375584504
+        position 14412.896422942122
         anchor 0.75 -0.2 -0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -318,20 +317,20 @@ Robot {
       ]
       endPoint Solid {
         translation 0.75 -0.2 -0.55
-        rotation 0.4066408310074522 0.8180985602799069 0.40664232468535827 1.7702369808569594
+        rotation -0.3364356505670588 0.8795574310524376 -0.33643688636645713 1.6987855423822777
         children [
           USE WHEEL
         ]
         name "BackLeft"
         boundingObject USE WHEEL
         physics USE WHEEL_PHYSICS
-        linearVelocity 0.37903244250453977 -0.403585658801159 1.8963329915586211
-        angularVelocity 9.3614939613378 2.8640717616567946 -1.273336144374233
+        linearVelocity -0.01362040191538234 0.0036629448278653115 -0.0008319458134338399
+        angularVelocity 0.0004915767391579514 0.015176185524648719 0.06743910803059527
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 1878.5111756123245
+        position 20500.783629230213
         anchor -0.75 -0.2 -0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -344,16 +343,16 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.7499999999999979 -0.20000000000000087 -0.5500000000000016
-        rotation 0.08026819168832736 -0.9935361027527915 0.08026848653039774 4.705900474014049
+        translation -0.7499999999999979 -0.20000000000000182 -0.5499999999999999
+        rotation 0.5050124796042734 -0.6999449387417321 0.5050143346220739 4.3629672214886455
         children [
           USE WHEEL
         ]
         name "BackRight"
         boundingObject USE WHEEL
         physics USE WHEEL_PHYSICS
-        linearVelocity 0.388803942415076 -0.4497883031346718 1.8820256668165085
-        angularVelocity 9.3612597453544 2.8640218311305308 -1.2732978991427732
+        linearVelocity -0.014840343256984878 -0.0008974784267434183 0.0003603428154868013
+        angularVelocity 0.0005252634158584447 0.015201874200097281 0.0675181664391794
       }
     }
     Transform {
@@ -428,8 +427,8 @@ Robot {
   battery [
     0
   ]
-  linearVelocity 0.3636176399556692 -0.37577451107287485 1.878352927868657
-  angularVelocity -0.11668502120940179 -0.039016312025310154 0.04573649519142499
+  linearVelocity -0.026617490597117627 -0.0007957961371404519 0.0001440785881533681
+  angularVelocity 0.0004300391553703529 0.01515490207602443 0.06731762257516483
 }
 DEF AR_Tag Solid {
   translation -30.5252 7.95178 43.2884

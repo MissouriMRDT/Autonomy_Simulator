@@ -1,6 +1,0 @@
-[submodule "webots_sim/controllers/RoveComm_Python"]
-	path = webots_sim/controllers/RoveComm_Python
-	url = git@github.com:MissouriMRDT/RoveComm_Python.git
-[submodule "webots_sim/controllers/rover_controller/RoveComm_Python"]
-	path = webots_sim/controllers/rover_controller/RoveComm_Python
-	url = https://github.com/MissouriMRDT/RoveComm_Python.git

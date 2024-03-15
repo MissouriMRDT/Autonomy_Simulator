@@ -73,8 +73,8 @@ LIBRARIES = -L"./RoveComm_CPP/lib" -lRoveComm_CPP
 
 
 # Download and run the script package if it doesn't exist.
-ROVECOMM_VERSION := v24.2.2
-ROVECOMM_INSTALLER := RoveComm_CPP_AMD64.sh
+ROVECOMM_VERSION = v24.2.0
+ROVECOMM_INSTALLER = RoveComm_CPP_AMD64.sh
 
 ifeq ($(wildcard RoveComm_CPP_AMD64.sh),)
     $(info Downloading RoveComm installer...)

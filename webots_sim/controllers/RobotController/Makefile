@@ -66,14 +66,14 @@
 ###-----------------------------------------------------------------------------
 
 # Recursively find .cpp files in current directory.
-CXX_SOURCES = $(shell find $(SRC_DIR) -name './*.cpp')
+CXX_SOURCES = $(shell find $(SRC_DIR) -name '*.cpp')
 ## Link Libraries.
 INCLUDE = -I"./RoveComm_CPP/include/"
 LIBRARIES = -L"./RoveComm_CPP/lib" -lRoveComm_CPP
 
 
 # Download and run the script package if it doesn't exist.
-ROVECOMM_VERSION := v24.2.1
+ROVECOMM_VERSION := v24.2.2
 ROVECOMM_INSTALLER := RoveComm_CPP_AMD64.sh
 
 ifeq ($(wildcard RoveComm_CPP_AMD64.sh),)

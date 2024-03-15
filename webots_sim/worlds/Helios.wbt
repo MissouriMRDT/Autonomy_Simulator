@@ -1,10 +1,9 @@
 #VRML_SIM R2023b utf8
 
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/trees/protos/Pine.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/floors/protos/UnevenTerrain.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/buildings/protos/FastFoodRestaurant.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/LedStrip.proto"
 
 WorldInfo {
   info [
@@ -13,12 +12,12 @@ WorldInfo {
   ]
   title "Robot Programming"
   window "robot_programming"
-  basicTimeStep 16
+  basicTimeStep 30
   FPS 30
   optimalThreadCount 8
   coordinateSystem "NUE"
   gpsCoordinateSystem "WGS84"
-  gpsReference 37.9514 -91.769 0
+  gpsReference 37.9514 -91.769 318
   contactProperties [
     ContactProperties {
       material2 "thymio body"
@@ -29,9 +28,10 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.7215590237795182 0.12435146913942471 0.6810941838873793 4.675884463448539
-  position -5.418265885780334 14.945822938108497 -49.098439920672625
+  orientation 0.6999818125080343 -0.6250526669291697 -0.3454484414825162 3.971700250204616
+  position 3.441982233246404 5.288868674291701 -23.950933825678213
   follow "robot"
+  followType "None"
 }
 TexturedBackground {
 }
@@ -73,172 +73,40 @@ UnevenTerrain {
   size 100 100 50
   randomSeed 987654321
 }
-Pine {
-  translation 5.84 -2.81 -6.64
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(14)"
-}
-Pine {
-  translation -5.62 -4.19 3.25
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(6)"
-}
-Pine {
-  translation -4.15 -4.39 -1.96
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(5)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation 0.86 -3.43 -6.2
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(7)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation 9.28 -2.98 -3.59
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(13)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation 0.95 -2.9 -0.370002
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(3)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation 4.27 -2.09 4.12
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(1)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation 4.27 -2.09 23.58
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(2)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation 1.63 -2.09 24.36
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(4)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation 3.21 -2.09 24.36
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(8)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -12.21 1.18 24.36
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(9)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation 4.89 -0.37 24.36
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(25)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation 5.39 1.18 28.8
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(26)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -12.21 3.48 33.83
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(10)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -44.12 -7.72 33.83
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(11)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -44.12 -8.71 31.19
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(12)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -44.12 -9.79 27.29
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(15)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -44.12 -9.79 24.7
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(16)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -44.12 -10.09 22.54
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(17)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -44.12 -10.09 37.18
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(18)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -44.12 -7.31 37.07
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(19)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -44.12 -10.54 20.19
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(20)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -46.34 -10.54 21.3
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(21)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -46.34 -10.54 27.13
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(22)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -46.34 -10.54 34.29
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(23)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation -46.34 -11.13 15.21
-  rotation 1 0 0 -1.5707953071795862
-  name "pine tree(24)"
-  enableBoundingObject FALSE
-}
-Pine {
-  translation 7.05 -2.1 -0.370002
-  rotation 1 0 0 -1.5707953071795862
-  enableBoundingObject FALSE
-}
 Robot {
-  translation 6.86864890356682 -0.21133674674646988 -33.53112787034782
-  rotation -0.15960637958606683 -0.9846167598623072 0.07110302239483114 1.7334505588600795
+  translation 5.19391839250534 0.028388194843286522 -32.2999514436944
+  rotation -0.034008072507006666 -0.9926484568914739 0.11615718675714255 1.8598408061064702
   children [
+    LED {
+      translation 0 0.61 -0.45
+      rotation 1 0 0 -1.5707953071795862
+      children [
+        PointLight {
+          attenuation 0 0 1
+          color 0 0 0
+          intensity 8
+          location 0 0.3 0
+          on FALSE
+          radius 1
+        }
+        Shape {
+          appearance LedStrip {
+          }
+          geometry Capsule {
+            height 0.1
+            radius 0.07
+          }
+          castShadows FALSE
+        }
+      ]
+      color [
+        0 0 0
+      ]
+      gradual TRUE
+    }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 16068.937782453506
+        position 16065.346602339278
         anchor 0.75 -0.2 0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -252,7 +120,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0.75 -0.2 0.55
-        rotation -0.7028662570456938 -0.1093362708305417 -0.7028688388223274 3.3593992308428446
+        rotation 0.34708825510165836 -0.8712396922281641 0.34708953003030807 4.574981604659057
         children [
           DEF WHEEL Shape {
             appearance Appearance {
@@ -270,13 +138,13 @@ Robot {
         boundingObject USE WHEEL
         physics DEF WHEEL_PHYSICS Physics {
         }
-        linearVelocity -0.012817012974050374 -0.01062609191179377 0.0018268121478166037
-        angularVelocity 0.0006468368710105234 0.014668907015259473 0.06530222323421882
+        linearVelocity -2.544722356244891e-05 -3.711484950640049e-05 -8.569956763872591e-06
+        angularVelocity 0.000301395578069086 1.1286620098398243e-05 -5.7203846501721794e-05
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 18739.161951179256
+        position 18736.057928310423
         anchor -0.75 -0.2 0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -290,20 +158,20 @@ Robot {
       ]
       endPoint Solid {
         translation -0.75 -0.2 0.55
-        rotation 0.6987848741319073 0.15548785710751561 0.6982286344576305 2.832845416751286
+        rotation -0.19531463477862782 0.9611269920119376 -0.19515916239668588 1.6096389619720584
         children [
           USE WHEEL
         ]
         name "FrontRight"
         boundingObject USE WHEEL
         physics USE WHEEL_PHYSICS
-        linearVelocity -0.013107256154329986 3.565457443389908e-05 -0.00020817763837813267
-        angularVelocity 0.00032201309619484474 0.015105448885074643 0.06712679860052949
+        linearVelocity -1.9054319007791287e-05 3.253677645218902e-05 -1.2933764609458928e-05
+        angularVelocity 0.00030638905715151785 1.0912628967599323e-05 -6.165184754474178e-05
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 14412.896422942122
+        position 14403.654684592524
         anchor 0.75 -0.2 -0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -317,20 +185,20 @@ Robot {
       ]
       endPoint Solid {
         translation 0.75 -0.2 -0.55
-        rotation -0.3364356505670588 0.8795574310524376 -0.33643688636645713 1.6987855423822777
+        rotation 0.6935592696726489 0.19480129641866867 0.6935618172627065 2.756810341041054
         children [
           USE WHEEL
         ]
         name "BackLeft"
         boundingObject USE WHEEL
         physics USE WHEEL_PHYSICS
-        linearVelocity -0.01362040191538234 0.0036629448278653115 -0.0008319458134338399
-        angularVelocity 0.0004915767391579514 0.015176185524648719 0.06743910803059527
+        linearVelocity -2.076008946523129e-06 -0.0001875443475746278 1.8545554710338623e-05
+        angularVelocity 0.000302957137101519 9.238545857205716e-06 -7.176573638579318e-05
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 20500.783629230213
+        position 20492.15740713009
         anchor -0.75 -0.2 -0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -343,16 +211,16 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.7499999999999979 -0.20000000000000182 -0.5499999999999999
-        rotation 0.5050124796042734 -0.6999449387417321 0.5050143346220739 4.3629672214886455
+        translation -0.7499999999999979 -0.19999999999999812 -0.5499999999999992
+        rotation -0.6979628276180956 -0.16028787756539575 -0.6979653913833647 3.459463388402033
         children [
           USE WHEEL
         ]
         name "BackRight"
         boundingObject USE WHEEL
         physics USE WHEEL_PHYSICS
-        linearVelocity -0.014840343256984878 -0.0008974784267434183 0.0003603428154868013
-        angularVelocity 0.0005252634158584447 0.015201874200097281 0.0675181664391794
+        linearVelocity -3.307530198239608e-05 3.94229721042495e-05 -4.096594666297556e-05
+        angularVelocity 0.0003021503114143083 1.2053796488617575e-05 -5.276615907938697e-05
       }
     }
     Transform {
@@ -375,18 +243,6 @@ Robot {
         }
       ]
     }
-    Accelerometer {
-      rotation -5.07515e-07 1 5.07515e-07 -1.5707953071795862
-    }
-    Lidar {
-      translation 0 0.4 1
-      rotation 0.5773509358560258 0.577349935856137 0.577349935856137 -2.094395307179586
-      horizontalResolution 813
-      fieldOfView 1.82
-      verticalFieldOfView 0.9
-      numberOfLayers 404
-      maxRange 10
-    }
     Pen {
       translation 0 -0.016 0
       rotation -1 0 0 1.5707963267948966
@@ -400,17 +256,16 @@ Robot {
     RangeFinder {
       translation 0 0.4 1
       rotation -0.5773489358556708 -0.5773509358554485 -0.5773509358554486 2.0944
+      name "rangefinder1"
       fieldOfView 1.85
       width 640
       height 360
       maxRange 40
     }
-    InertialUnit {
-      rotation 0 -1 0 1.5708
-    }
     Camera {
       translation 0 0.4 1
       rotation -0.5773492478224381 -0.5773507798725421 -0.577350779872542 2.0943966344446547
+      name "camera1"
       fieldOfView 1.91986
       width 1920
       height 1080
@@ -424,11 +279,12 @@ Robot {
     mass 1
   }
   controller "RobotController"
+  synchronization FALSE
   battery [
     0
   ]
-  linearVelocity -0.026617490597117627 -0.0007957961371404519 0.0001440785881533681
-  angularVelocity 0.0004300391553703529 0.01515490207602443 0.06731762257516483
+  linearVelocity -4.856469143206255e-06 -2.7569740123656315e-05 4.220192427606184e-05
+  angularVelocity 0.0003087941660082452 7.712947648291713e-06 -7.944406162830971e-05
 }
 DEF AR_Tag Solid {
   translation -30.5252 7.95178 43.2884
@@ -1563,8 +1419,4 @@ DEF AR_Tag Solid {
   ]
   name "tag5"
   description "AR Tag"
-}
-FastFoodRestaurant {
-  translation -20.1815 -8.8437 -44.6761
-  rotation 0.7071067956638433 0.5773498331603562 0.40824888202629633 -2.094395307179586
 }

@@ -11,6 +11,7 @@
 #include "Rover.h"
 
 #include <RoveComm/RoveCommManifest.h>
+#include <cmath>
 
 
 /******************************************************************************
@@ -91,36 +92,47 @@ Rover::~Rover()
  ******************************************************************************/
 void Rover::ThreadedContinuousCode()
 {
+    // Create static instance variables.
+    static bool bWatchdogAlreadyTriggered = false;
+
     // Get current time.
     std::chrono::system_clock::time_point tmCurrentTime = std::chrono::system_clock::now();
     // Acquire read lock for checking watchdog timer.
     std::shared_lock<std::shared_mutex> lkWatchdogTimerLock(m_muWatchdogMutex);
+    // Calculate time elapsed since last motor update.
+    int nTimeElapsed = std::chrono::duration_cast<std::chrono::seconds>(tmCurrentTime - m_tmWatchdogLastUpdateTime).count();
+    // Unlock mutex.
+    lkWatchdogTimerLock.unlock();
+    
     // Check drive watchdog.
-    if (std::chrono::duration_cast<std::chrono::seconds>(tmCurrentTime - m_tmWatchdogLastUpdateTime).count() > ROVER_MOTOR_WATCHDOG_TIMEOUT)
+    if (nTimeElapsed > static_cast<int>(ROVER_MOTOR_WATCHDOG_TIMEOUT) && !bWatchdogAlreadyTriggered)
     {
         // Stop motors.
         m_pFrontLeftMotor->setVelocity(0);
         m_pFrontRightMotor->setVelocity(0);
         m_pBackLeftMotor->setVelocity(0);
         m_pBackRightMotor->setVelocity(0);
+        
+        // Set watchdog triggered.
+        bWatchdogAlreadyTriggered = true;
     }
-    lkWatchdogTimerLock.unlock();
+    else if (nTimeElapsed <= static_cast<int>(ROVER_MOTOR_WATCHDOG_TIMEOUT) && bWatchdogAlreadyTriggered)
+    {
+        // Reset wathdog triggered.
+        bWatchdogAlreadyTriggered = false;
+    }
     
-    // Acquire read lock for getting sensor values.
-    std::shared_lock<std::shared_mutex> lkSensorsLock(m_muSensorsMutex);
+    // Add requests to update request queue.
+    m_qUpdateRequests.push(eMainCamera);
+    m_qUpdateRequests.push(eMainRangeFinder);
+    m_qUpdateRequests.push(eGPS);
+    m_qUpdateRequests.push(eCompass);
+    m_qUpdateRequests.push(eAccuracy);
     
-    // Get GPS sensor location and altitude.
-    const double* dLatLonAlt = m_pGPS->getValues();
-    // Package into a RoveCommPacket.
-    rovecomm::RoveCommPacket<double> stPacket;
-    stPacket.unDataId    = manifest::Nav::TELEMETRY.find("GPSLATLONALT")->second.DATA_ID;
-    stPacket.unDataCount = manifest::Nav::TELEMETRY.find("GPSLATLONALT")->second.DATA_COUNT;
-    stPacket.eDataType   = manifest::Nav::TELEMETRY.find("GPSLATLONALT")->second.DATA_TYPE;
-    stPacket.vData.emplace_back(dLatLonAlt[0]);
-    stPacket.vData.emplace_back(dLatLonAlt[1]);
-    stPacket.vData.emplace_back(dLatLonAlt[2]);
-    // Send drive command over RoveComm to drive board.
-    m_pRoveCommUDPNode->SendUDPPacket<double>(stPacket, "127.0.0.1", 11000);
+    // Start the thread pool to store multiple copies of the sl::Mat into the given cv::Mats.
+    this->RunDetachedPool(m_qUpdateRequests.size(), ROVER_REQUEST_THREADPOOL_THREADS);
+    // Wait for thread pool to finish.
+    this->JoinPool();
 }
 
 /******************************************************************************
@@ -131,7 +143,86 @@ void Rover::ThreadedContinuousCode()
  * @author clayjay3 (claytonraycowen@gmail.com)
  * @date 2024-03-14
  ******************************************************************************/
-void Rover::PooledLinearCode() {}
+void Rover::PooledLinearCode() 
+{
+    // Acquire read lock for getting sensor values.
+    std::shared_lock<std::shared_mutex> lkSensorsLock(m_muSensorsMutex);
+    
+    // Acquire write lock for getting sensor values.
+    std::unique_lock<std::shared_mutex> lkUpdatesLock(m_muRequestQueueMutex);
+    // Check if the queue is empty.
+    if (!m_qUpdateRequests.empty())
+    {
+        // Get request type out of queue.
+        SensorUpdateRequest eUpdateRequestType = m_qUpdateRequests.front();
+        // Pop old request out of queue.
+        m_qUpdateRequests.pop();
+        // Release lock.
+        lkUpdatesLock.unlock();
+    
+        // Switch statement for sensor update type.
+        switch (eUpdateRequestType)
+        {
+            case eMainCamera:
+                break;
+                
+            case eMainRangeFinder:
+                break;
+                
+            case eGPS:
+            {
+                // Get GPS sensor location and altitude.
+                const double* dLatLonAlt = m_pGPS->getValues();
+                // Package into a RoveCommPacket.
+                rovecomm::RoveCommPacket<double> stGPSPacket;
+                stGPSPacket.unDataId    = manifest::Nav::TELEMETRY.find("GPSLATLONALT")->second.DATA_ID;
+                stGPSPacket.unDataCount = manifest::Nav::TELEMETRY.find("GPSLATLONALT")->second.DATA_COUNT;
+                stGPSPacket.eDataType   = manifest::Nav::TELEMETRY.find("GPSLATLONALT")->second.DATA_TYPE;
+                stGPSPacket.vData.emplace_back(dLatLonAlt[0]);
+                stGPSPacket.vData.emplace_back(dLatLonAlt[1]);
+                stGPSPacket.vData.emplace_back(dLatLonAlt[2]);
+                // Send drive command over RoveComm to drive board.
+                m_pRoveCommUDPNode->SendUDPPacket<double>(stGPSPacket, "127.0.0.1", manifest::General::ETHERNET_UDP_PORT);
+                break;
+            }
+                
+            case eCompass:
+            {
+                // Get GPS sensor location and altitude.
+                const double* dHeading = m_pCompass->getValues();
+                // Package into a RoveCommPacket.
+                rovecomm::RoveCommPacket<float> stCompassPacket;
+                stCompassPacket.unDataId    = manifest::Nav::TELEMETRY.find("COMPASSDATA")->second.DATA_ID;
+                stCompassPacket.unDataCount = manifest::Nav::TELEMETRY.find("COMPASSDATA")->second.DATA_COUNT;
+                stCompassPacket.eDataType   = manifest::Nav::TELEMETRY.find("COMPASSDATA")->second.DATA_TYPE;
+                stCompassPacket.vData.emplace_back(static_cast<float>(-dHeading[0] * (180.0 / M_PI)));
+                // Send drive command over RoveComm to drive board.
+                m_pRoveCommUDPNode->SendUDPPacket<float>(stCompassPacket, "127.0.0.1", manifest::General::ETHERNET_UDP_PORT);
+                break;
+            }
+                
+            case eAccuracy:
+            {
+                // Package into a RoveCommPacket.
+                rovecomm::RoveCommPacket<float> stAccuracyPacket;
+                stAccuracyPacket.unDataId    = manifest::Nav::TELEMETRY.find("ACCURACYDATA")->second.DATA_ID;
+                stAccuracyPacket.unDataCount = manifest::Nav::TELEMETRY.find("ACCURACYDATA")->second.DATA_COUNT;
+                stAccuracyPacket.eDataType   = manifest::Nav::TELEMETRY.find("ACCURACYDATA")->second.DATA_TYPE;
+                // Fake accuracy data.
+                stAccuracyPacket.vData.emplace_back(0.05);
+                stAccuracyPacket.vData.emplace_back(0.08);
+                stAccuracyPacket.vData.emplace_back(1.0);
+                // Send drive command over RoveComm to drive board.
+                m_pRoveCommUDPNode->SendUDPPacket<float>(stAccuracyPacket, "127.0.0.1", manifest::General::ETHERNET_UDP_PORT);
+                break;
+            }
+                
+            default:
+                break;
+        }
+        
+    }
+}
 
 /******************************************************************************
  * @brief This method should be called externally to update and synchronizes 

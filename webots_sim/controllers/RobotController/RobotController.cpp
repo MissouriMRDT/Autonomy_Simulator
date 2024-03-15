@@ -49,7 +49,7 @@ int main(int argc, char **argv)
       szMainStatsPrint += "Rover Periodic Loop IPS: " + std::to_string(pRover->GetIPS().GetAverageIPS()) + "\n";
       szMainStatsPrint += "RoveCommUDP Node IPS: " + std::to_string(pRoveCommNode->GetIPS().GetAverageIPS()) + "\n";
       // Print out Rover stats.
-      // std::cout << szMainStatsPrint << std::endl;
+      std::cout << szMainStatsPrint << std::endl;
       
       // Call Rover tick. This does not process or send any info to the Autonomy_Software codebase.
       // It simply runs the simluation for a certain amount of time and all of the sensors will have

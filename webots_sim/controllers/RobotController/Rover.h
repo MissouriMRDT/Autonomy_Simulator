@@ -15,6 +15,8 @@
 
 #include <shared_mutex>
 #include <chrono>
+#include <atomic>
+#include <queue>
 #include <RoveComm/RoveComm.h>
 #include <interfaces/AutonomyThread.hpp>
 #include <webots/Motor.hpp>
@@ -26,18 +28,20 @@
 #include <webots/LED.hpp>
 
 // Define class constants.
-const unsigned int ROVER_TIMESTEP_MS            = 20;       // The amount of time to run the simulation before returning with updated values.
-const unsigned int ROVER_THREAD_MAX_IPS         = 120;      // The max iterations per second of the rover periodic loop.
-const unsigned int ROVER_MOTOR_WATCHDOG_TIMEOUT = 2;      // Motor watchdog timeout in seconds.
-const std::string ROVER_FRONTLEFT_MOTOR_NAME    = "motor1";
-const std::string ROVER_FRONTRIGHT_MOTOR_NAME   = "motor2";
-const std::string ROVER_BACKLEFT_MOTOR_NAME     = "motor3";
-const std::string ROVER_BACKRIGHT_MOTOR_NAME    = "motor4";
-const std::string ROVER_MAINCAM_NAME            = "camera1";
-const std::string ROVER_MAINRANGEFINDER_NAME    = "rangefinder1";
-const std::string ROVER_GPS_NAME                = "gps";
-const std::string ROVER_COMPASS_NAME            = "compass";
-const std::string ROVER_LED_NAME                = "led";
+const unsigned int ROVER_TIMESTEP_MS                = 20;       // The amount of time to run the simulation before returning with updated values.
+const unsigned int ROVER_THREAD_MAX_IPS             = 120;      // The max iterations per second of the rover periodic loop.
+const unsigned int ROVER_MOTOR_WATCHDOG_TIMEOUT     = 2;        // Motor watchdog timeout in seconds.
+const std::string ROVER_FRONTLEFT_MOTOR_NAME        = "motor1";
+const std::string ROVER_FRONTRIGHT_MOTOR_NAME       = "motor2";
+const std::string ROVER_BACKLEFT_MOTOR_NAME         = "motor3";
+const std::string ROVER_BACKRIGHT_MOTOR_NAME        = "motor4";
+const std::string ROVER_MAINCAM_NAME                = "camera1";
+const std::string ROVER_MAINRANGEFINDER_NAME        = "rangefinder1";
+const std::string ROVER_GPS_NAME                    = "gps";
+const std::string ROVER_COMPASS_NAME                = "compass";
+const std::string ROVER_LED_NAME                    = "led";
+const std::memory_order ATOMIC_MEMORY_ORDER_METHOD  = std::memory_order_relaxed;
+const unsigned int ROVER_REQUEST_THREADPOOL_THREADS = 10;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -52,6 +56,20 @@ const std::string ROVER_LED_NAME                = "led";
 class Rover : public AutonomyThread<void>, public webots::Robot
 {
     private:
+        /////////////////////////////////////////
+        // Declare private enums that are specific to and used within this class.
+        /////////////////////////////////////////
+        
+        // Enum for storing update request types for sensor data.
+        enum SensorUpdateRequest
+        {
+            eMainCamera,
+            eMainRangeFinder,
+            eGPS,
+            eCompass,
+            eAccuracy
+        };
+    
         /////////////////////////////////////////
         // Declare private member variables.
         /////////////////////////////////////////
@@ -69,6 +87,10 @@ class Rover : public AutonomyThread<void>, public webots::Robot
         std::shared_mutex m_muSensorsMutex;
         std::shared_mutex m_muWatchdogMutex;
         std::chrono::system_clock::time_point m_tmWatchdogLastUpdateTime;
+        
+        // Threadpool variables.
+        std::queue<SensorUpdateRequest> m_qUpdateRequests;
+        std::shared_mutex m_muRequestQueueMutex;
 
         /////////////////////////////////////////
         // Declare private methods.

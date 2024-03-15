@@ -130,9 +130,14 @@ void Rover::ThreadedContinuousCode()
     m_qUpdateRequests.push(eAccuracy);
     
     // Start the thread pool to store multiple copies of the sl::Mat into the given cv::Mats.
-    this->RunDetachedPool(m_qUpdateRequests.size(), ROVER_REQUEST_THREADPOOL_THREADS);
-    // Wait for thread pool to finish.
-    this->JoinPool();
+    this->RunDetachedPool(m_qUpdateRequests.size(), ROVER_REQUEST_POOL_THREADS);
+    
+    // Check if threadpool queue is getting too large.
+    if (this->GetPoolQueueLength() >= static_cast<int>(ROVER_REQUEST_POOL_QUEUE_SIZE))
+    {
+        // Wait for thread pool to finish.
+        this->JoinPool();
+    }
 }
 
 /******************************************************************************

@@ -41,7 +41,8 @@ const std::string ROVER_GPS_NAME                    = "gps";
 const std::string ROVER_COMPASS_NAME                = "compass";
 const std::string ROVER_LED_NAME                    = "led";
 const std::memory_order ATOMIC_MEMORY_ORDER_METHOD  = std::memory_order_relaxed;
-const unsigned int ROVER_REQUEST_THREADPOOL_THREADS = 10;
+const unsigned int ROVER_REQUEST_POOL_THREADS       = 10;
+const unsigned int ROVER_REQUEST_POOL_QUEUE_SIZE    = 100;
 
 ///////////////////////////////////////////////////////////////////////////////
 

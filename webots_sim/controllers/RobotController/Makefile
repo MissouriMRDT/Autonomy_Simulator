@@ -77,7 +77,7 @@ ifeq ($(OS), Linux)
     $(info Building for Linux)
     # Add Linux-specific build commands here
     # Download and run the script package if it doesn't exist.
-    ROVECOMM_VERSION = v24.2.1
+    ROVECOMM_VERSION = v24.2.2
     ROVECOMM_INSTALLER = RoveComm_CPP_AMD64.sh
     
     ifeq ($(wildcard RoveComm_CPP_AMD64.sh),)
@@ -96,7 +96,7 @@ ifeq ($(OS), Linux)
 else
     $(info Building for Windows)
     # Add Windows-specific build commands here
-    ROVECOMM_VERSION = v24.2.1
+    ROVECOMM_VERSION = v24.2.2
     ROVECOMM_INSTALLER = RoveComm_CPP_AMD64.zip
     
     ifeq (,$(wildcard RoveComm_CPP))
@@ -108,11 +108,10 @@ else
     
         # Install RoveComm by extracting the zip file.
         $(info Extracting RoveComm...)
-        $(shell powershell -Command "& { Expand-Archive -Path $(ROVECOMM_INSTALLER) -DestinationPath . }")
-        $(shell powershell -Command "& { Move-Item -Path 'RoveComm_CPP-*\include', 'RoveComm_CPP-*\external', 'RoveComm_CPP-*\lib' -Destination 'RoveComm_CPP' -Force -Verbose }")
-    
-        # Clean up the zip file.
-        $(shell del $(ROVECOMM_ZIP))
+        $(shell powershell -Command "& { Expand-Archive -Force -Path $(ROVECOMM_INSTALLER) -DestinationPath . }")
+        _tmp := $(shell powershell -Command "& { robocopy .\include\ .\RoveComm_CPP\include /E /MOVE }")
+        _tmp := $(shell powershell -Command "& { robocopy .\external\ .\RoveComm_CPP\external /E /MOVE }")
+        _tmp := $(shell powershell -Command "& { robocopy .\lib\ .\RoveComm_CPP\lib /E /MOVE }")
     else
         $(info RoveComm is already installed.)
     endif

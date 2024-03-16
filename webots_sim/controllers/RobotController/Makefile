@@ -70,25 +70,56 @@ CXX_SOURCES = $(shell find $(SRC_DIR) -name '*.cpp')
 ## Link Libraries.
 INCLUDE = -I"./RoveComm_CPP/include/"
 LIBRARIES = -L"./RoveComm_CPP/lib" -lRoveComm_CPP
+# Check OS platform
+OS := $(shell uname)
 
-
-# Download and run the script package if it doesn't exist.
-ROVECOMM_VERSION = v24.2.0
-ROVECOMM_INSTALLER = RoveComm_CPP_AMD64.sh
-
-ifeq ($(wildcard RoveComm_CPP_AMD64.sh),)
-    $(info Downloading RoveComm installer...)
-    $(shell curl -LOk https://github.com/MissouriMRDT/RoveComm_CPP/releases/download/$(ROVECOMM_VERSION)/RoveComm_CPP_AMD64.sh)
-endif
-
-ifeq ($(wildcard RoveComm_CPP),)
-    $(info Installing RoveComm...)
-    _tmp := $(shell sh ./RoveComm_CPP_AMD64.sh --skip-license)
-    _tmp := $(shell mkdir -p RoveComm_CPP/)
-    _tmp := $(shell mv external 'include' lib RoveComm_CPP/)
+ifeq ($(OS), Linux)
+    $(info Building for Linux)
+    # Add Linux-specific build commands here
+    # Download and run the script package if it doesn't exist.
+    ROVECOMM_VERSION = v24.2.1
+    ROVECOMM_INSTALLER = RoveComm_CPP_AMD64.sh
+    
+    ifeq ($(wildcard RoveComm_CPP_AMD64.sh),)
+        $(info Downloading RoveComm installer...)
+        $(shell curl -LOk https://github.com/MissouriMRDT/RoveComm_CPP/releases/download/$(ROVECOMM_VERSION)/$(ROVECOMM_INSTALLER))
+    endif
+    
+    ifeq ($(wildcard RoveComm_CPP),)
+        $(info Installing RoveComm...)
+        _tmp := $(shell sh ./$(ROVECOMM_INSTALLER) --skip-license)
+        _tmp := $(shell mkdir -p RoveComm_CPP/)
+        _tmp := $(shell mv external 'include' lib RoveComm_CPP/)
+    else
+        $(info RoveComm is already installed.)
+    endif
 else
-    $(info RoveComm is already installed.)
+    $(info Building for Windows)
+    # Add Windows-specific build commands here
+    ROVECOMM_VERSION = v24.2.1
+    ROVECOMM_INSTALLER = RoveComm_CPP_AMD64.zip
+    
+    ifeq (,$(wildcard RoveComm_CPP))
+        # Check if the zip file exists. If not, download it.
+        ifeq (,$(wildcard $(ROVECOMM_ZIP)))
+            $(info Downloading RoveComm zip file...)
+            $(shell powershell -Command "& { Invoke-WebRequest -Uri https://github.com/MissouriMRDT/RoveComm_CPP/releases/download/$(ROVECOMM_VERSION)/$(ROVECOMM_INSTALLER) -OutFile $(ROVECOMM_INSTALLER) }")
+        endif
+    
+        # Install RoveComm by extracting the zip file.
+        $(info Extracting RoveComm...)
+        $(shell powershell -Command "& { Expand-Archive -Path $(ROVECOMM_INSTALLER) -DestinationPath . }")
+        $(shell powershell -Command "& { Move-Item -Path 'RoveComm_CPP-*\include', 'RoveComm_CPP-*\external', 'RoveComm_CPP-*\lib' -Destination 'RoveComm_CPP' -Force -Verbose }")
+    
+        # Clean up the zip file.
+        $(shell del $(ROVECOMM_ZIP))
+    else
+        $(info RoveComm is already installed.)
+    endif
 endif
+
+
+
 
 ### Do not modify: this includes Webots global Makefile.include
 null :=

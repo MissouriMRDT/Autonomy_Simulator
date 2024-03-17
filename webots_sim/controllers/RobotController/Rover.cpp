@@ -94,6 +94,15 @@ void Rover::ThreadedContinuousCode()
 {
     // Create static instance variables.
     static bool bWatchdogAlreadyTriggered = false;
+    
+    // Add requests to update request queue.
+    m_qUpdateRequests.push(eMainCamera);
+    m_qUpdateRequests.push(eMainRangeFinder);
+    m_qUpdateRequests.push(eGPS);
+    m_qUpdateRequests.push(eCompass);
+    m_qUpdateRequests.push(eAccuracy);
+    // Start the thread pool to store multiple copies of the sl::Mat into the given cv::Mats.
+    this->RunDetachedPool(m_qUpdateRequests.size(), ROVER_REQUEST_POOL_THREADS);
 
     // Get current time.
     std::chrono::system_clock::time_point tmCurrentTime = std::chrono::system_clock::now();
@@ -107,11 +116,15 @@ void Rover::ThreadedContinuousCode()
     // Check drive watchdog.
     if (nTimeElapsed > static_cast<int>(ROVER_MOTOR_WATCHDOG_TIMEOUT) && !bWatchdogAlreadyTriggered)
     {
+        // Acquire write lock for updating motor powers.
+        std::unique_lock<std::shared_mutex> lkMotorLock(m_muDriveMotorMutex);
         // Stop motors.
         m_pFrontLeftMotor->setVelocity(0);
         m_pFrontRightMotor->setVelocity(0);
         m_pBackLeftMotor->setVelocity(0);
         m_pBackRightMotor->setVelocity(0);
+        // Release lock.
+        lkMotorLock.unlock();
         
         // Set watchdog triggered.
         bWatchdogAlreadyTriggered = true;
@@ -122,22 +135,33 @@ void Rover::ThreadedContinuousCode()
         bWatchdogAlreadyTriggered = false;
     }
     
-    // Add requests to update request queue.
-    m_qUpdateRequests.push(eMainCamera);
-    m_qUpdateRequests.push(eMainRangeFinder);
-    m_qUpdateRequests.push(eGPS);
-    m_qUpdateRequests.push(eCompass);
-    m_qUpdateRequests.push(eAccuracy);
+    // Acquire write lock for updating motor powers.
+    std::unique_lock<std::shared_mutex> lkMotorLock(m_muDriveMotorMutex);
+    // Set motor power to values given from rovecomm.
+    m_pFrontLeftMotor->setVelocity(m_fLeftMotorPower);
+    m_pBackLeftMotor->setVelocity(m_fLeftMotorPower);
+    m_pFrontRightMotor->setVelocity(m_fRightMotorPower);
+    m_pBackRightMotor->setVelocity(m_fRightMotorPower);
+    // Release locks.
+    lkMotorLock.unlock();
     
-    // Start the thread pool to store multiple copies of the sl::Mat into the given cv::Mats.
-    this->RunDetachedPool(m_qUpdateRequests.size(), ROVER_REQUEST_POOL_THREADS);
+    // Acquire write lock for getting sensor values.
+    std::unique_lock<std::shared_mutex> lkSensorsLock(m_muSensorsMutex);
+    // Call Rover tick. This does not process or send any info to the Autonomy_Software codebase.
+    // It simply runs the simluation for a certain amount of time and all of the sensors will have
+    // new values when it's done. The Rover has a different periodic loop that runs in a seperate
+    // thread to process and send the data over rovecomm.
+    // Check if the robots periodic loop should stop.
+    if (this->step(ROVER_TIMESTEP_MS) == -1)
+    {
+        // Signal this thread to stop.
+        this->RequestStop();
+    }
+    // Release locks.
+    lkSensorsLock.unlock();
     
-    // Check if threadpool queue is getting too large.
-    // if (this->GetPoolQueueLength() >= static_cast<int>(ROVER_REQUEST_POOL_QUEUE_SIZE))
-    // {
-        // Wait for thread pool to finish.
-        this->JoinPool();
-    // }
+    // Wait for thread pool to finish.
+    this->JoinPool();
 }
 
 /******************************************************************************
@@ -194,13 +218,20 @@ void Rover::PooledLinearCode()
             case eCompass:
             {
                 // Get GPS sensor location and altitude.
-                const double* dHeading = m_pCompass->getValues();
+                const double* dOrientation = m_pCompass->getValues();
                 // Package into a RoveCommPacket.
                 rovecomm::RoveCommPacket<float> stCompassPacket;
                 stCompassPacket.unDataId    = manifest::Nav::TELEMETRY.find("COMPASSDATA")->second.DATA_ID;
                 stCompassPacket.unDataCount = manifest::Nav::TELEMETRY.find("COMPASSDATA")->second.DATA_COUNT;
                 stCompassPacket.eDataType   = manifest::Nav::TELEMETRY.find("COMPASSDATA")->second.DATA_TYPE;
-                stCompassPacket.vData.emplace_back(static_cast<float>(-dHeading[0] * (180.0 / M_PI)));
+                // Convert orientation vector to z-axis bearing.
+                double dRad = std::atan2(dOrientation[1], dOrientation[0]);
+                double dHeading = (dRad - 1.5708) / M_PI * 180.0;
+                if (dHeading < 0.0)
+                {
+                    dHeading += 360.0;
+                }
+                stCompassPacket.vData.emplace_back(static_cast<float>(dHeading));
                 // Send drive command over RoveComm to drive board.
                 m_pRoveCommUDPNode->SendUDPPacket<float>(stCompassPacket, "127.0.0.1", manifest::General::ETHERNET_UDP_PORT);
                 break;
@@ -226,27 +257,6 @@ void Rover::PooledLinearCode()
                 break;
         }
         
-    }
-}
-
-/******************************************************************************
- * @brief This method should be called externally to update and synchronizes 
- *          the controller's data with the simulator.
- *
- *
- * @author clayjay3 (claytonraycowen@gmail.com)
- * @date 2024-03-14
- ******************************************************************************/
-void Rover::Tick()
-{
-    // Acquire write lock for updating sensor values in step function.
-    std::unique_lock<std::shared_mutex> lkSensorsLock(m_muSensorsMutex);
-
-    // Check if the robots periodic loop should stop.
-    if (this->step(ROVER_TIMESTEP_MS) == -1)
-    {
-        // Signal this thread to stop.
-        this->RequestStop();
     }
 }
 

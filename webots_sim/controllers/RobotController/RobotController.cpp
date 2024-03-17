@@ -51,11 +51,7 @@ int main(int argc, char **argv)
       // Print out Rover stats.
       std::cout << szMainStatsPrint << std::endl;
       
-      // Call Rover tick. This does not process or send any info to the Autonomy_Software codebase.
-      // It simply runs the simluation for a certain amount of time and all of the sensors will have
-      // new values when it's done. The Rover has a different periodic loop that runs in a seperate
-      // thread to process and send the data over rovecomm.
-      pRover->Tick(); 
+      std::this_thread::sleep_for(std::chrono::milliseconds(20));
   };
   
   delete pRover;

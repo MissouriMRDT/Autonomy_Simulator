@@ -31,6 +31,7 @@
 const unsigned int ROVER_TIMESTEP_MS                = 20;       // The amount of time to run the simulation before returning with updated values.
 const unsigned int ROVER_THREAD_MAX_IPS             = 120;      // The max iterations per second of the rover periodic loop.
 const unsigned int ROVER_MOTOR_WATCHDOG_TIMEOUT     = 2;        // Motor watchdog timeout in seconds.
+const float ROVER_MAX_VELOCITY                      = 10;
 const std::string ROVER_FRONTLEFT_MOTOR_NAME        = "motor1";
 const std::string ROVER_FRONTRIGHT_MOTOR_NAME       = "motor2";
 const std::string ROVER_BACKLEFT_MOTOR_NAME         = "motor3";
@@ -42,7 +43,6 @@ const std::string ROVER_COMPASS_NAME                = "compass";
 const std::string ROVER_LED_NAME                    = "led";
 const std::memory_order ATOMIC_MEMORY_ORDER_METHOD  = std::memory_order_relaxed;
 const unsigned int ROVER_REQUEST_POOL_THREADS       = 10;
-const unsigned int ROVER_REQUEST_POOL_QUEUE_SIZE    = 100;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -85,6 +85,9 @@ class Rover : public AutonomyThread<void>, public webots::Robot
         webots::GPS* m_pGPS;
         webots::Compass* m_pCompass;
         webots::LED* m_pLED;
+        float m_fLeftMotorPower;
+        float m_fRightMotorPower;
+        std::shared_mutex m_muDriveMotorMutex;
         std::shared_mutex m_muSensorsMutex;
         std::shared_mutex m_muWatchdogMutex;
         std::chrono::system_clock::time_point m_tmWatchdogLastUpdateTime;
@@ -116,18 +119,14 @@ class Rover : public AutonomyThread<void>, public webots::Robot
         {
             // Not using this.
             (void) stdAddr;
-            std::cout << "HERE" << std::endl;
 
+            // Acquire write lock for updating motor powers.
+            std::unique_lock<std::shared_mutex> lkWriteMotorLock(m_muDriveMotorMutex);
             // Map the incoming -1 to 1 drive power values to our max speed output for the virtual rover.
-            float fMaxVelocity = m_pFrontLeftMotor->getMaxVelocity();
-            float fLeftPower = numops::MapRange(stPacket.vData[0], -1.0f, 1.0f, -fMaxVelocity, fMaxVelocity);
-            float fRightPower = numops::MapRange(stPacket.vData[1], -1.0f, 1.0f, -fMaxVelocity, fMaxVelocity);
-            
-            // Set motor power to values given from rovecomm.
-            m_pFrontLeftMotor->setVelocity(fLeftPower);
-            m_pBackLeftMotor->setVelocity(fLeftPower);
-            m_pFrontRightMotor->setVelocity(fRightPower);
-            m_pBackRightMotor->setVelocity(fRightPower);
+            m_fLeftMotorPower = numops::MapRange(stPacket.vData[0], -1.0f, 1.0f, -ROVER_MAX_VELOCITY, ROVER_MAX_VELOCITY);
+            m_fRightMotorPower = numops::MapRange(stPacket.vData[1], -1.0f, 1.0f, -ROVER_MAX_VELOCITY, ROVER_MAX_VELOCITY);
+            // Release mutex lock.
+            lkWriteMotorLock.unlock();
 
             // Acquire write lock for updating watchdog timer.
             std::unique_lock<std::shared_mutex> lkWatchdogTimerLock(m_muWatchdogMutex);
@@ -141,7 +140,6 @@ class Rover : public AutonomyThread<void>, public webots::Robot
 
         Rover(rovecomm::RoveCommUDP* pRoveCommUDPNode);
         ~Rover();
-        void Tick();
 
         /////////////////////////////////////////
         // Getters.

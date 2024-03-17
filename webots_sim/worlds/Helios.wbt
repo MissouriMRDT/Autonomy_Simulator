@@ -27,10 +27,9 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.44606066299635994 0.3402404344681343 0.8278081490781443 4.557705110751054
-  position 7.325565609040978 37.310749637003966 -15.075236521349755
+  orientation 0.2513603201174736 0.5105414937665449 0.8222927535939171 4.307968017064564
+  position 14.171269739443677 38.17249150043753 -56.133821871594755
   follow "robot"
-  followType "None"
 }
 TexturedBackground {
 }
@@ -73,39 +72,34 @@ UnevenTerrain {
   randomSeed 987654321
 }
 Robot {
-  translation 9.31333264586747 7.007793796605082 37.498592518222374
-  rotation -0.25718641339839476 -0.01278410416426034 0.9662772456412223 -0.3731061581863493
+  translation 3.814408790971599 -2.4357627317617543 -9.889330894576496
+  rotation -0.12838501390070767 0.9906130208316807 0.04693752405535581 1.7340731870968833
   children [
     LED {
-      translation 0 0.61 -0.45
-      rotation 1 0 0 -1.5707953071795862
+      translation -7.94961e-13 0.29 -0.43
+      rotation -0.7071067811859252 1.326789589425184e-06 0.7071067811859252 -3.1415853071795863
       children [
         PointLight {
           attenuation 0 0 1
-          color 0 0 0
-          intensity 8
+          color 0 1 0
+          intensity 7
           location 0 0.3 0
-          on FALSE
-          radius 1
+          radius 0.5
         }
         Shape {
           appearance LedStrip {
           }
-          geometry Capsule {
-            height 0.1
-            radius 0.07
+          geometry Box {
+            size 0.01 0.2 0.5
           }
-          castShadows FALSE
         }
       ]
-      color [
-        0 0 0
-      ]
+      color []
       gradual TRUE
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 16444.57896906621
+        position 20806.69775977335
         anchor 0.75 -0.2 0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -119,7 +113,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0.75 -0.2 0.55
-        rotation -0.5597004503943207 -0.6111207002535044 -0.5597025062924599 4.238702153186255
+        rotation -0.7068864632411431 -0.024887451522513423 -0.7068890597845905 3.1913571011188115
         children [
           DEF WHEEL Shape {
             appearance Appearance {
@@ -137,13 +131,13 @@ Robot {
         boundingObject USE WHEEL
         physics DEF WHEEL_PHYSICS Physics {
         }
-        linearVelocity 0.00017391094745677676 -6.539818897289122e-05 4.0755256306387544e-05
-        angularVelocity 1.6865402871830547e-05 -3.494942397544094e-06 -1.2616766268781186e-05
+        linearVelocity -9.633595739232024e-05 -6.671853015759175e-06 -3.8369555946074724e-05
+        angularVelocity 9.572457015093437e-06 4.61093134668415e-06 4.8845310335007025e-05
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 19949.678740837946
+        position 24199.48518328705
         anchor -0.75 -0.2 0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -157,20 +151,20 @@ Robot {
       ]
       endPoint Solid {
         translation -0.75 -0.2 0.55
-        rotation -0.26888600073418506 -0.9249409137510297 -0.26867196481692296 4.635236542459765
+        rotation -0.7055618220306967 -0.07181399891607046 -0.7050001878385609 3.285088336976743
         children [
           USE WHEEL
         ]
         name "FrontRight"
         boundingObject USE WHEEL
         physics USE WHEEL_PHYSICS
-        linearVelocity 0.0001794131972244903 -4.7113992445092816e-05 4.476078432766037e-05
-        angularVelocity 1.7651789805067824e-05 -3.7907448325896573e-06 -1.2635015681186842e-05
+        linearVelocity -9.616536238801274e-05 -7.263532860907811e-06 -4.021646567849449e-05
+        angularVelocity 9.89500122706806e-06 4.638651683370701e-06 4.865542968347622e-05
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 14770.237345112648
+        position 19111.274405236465
         anchor 0.75 -0.2 -0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -184,20 +178,20 @@ Robot {
       ]
       endPoint Solid {
         translation 0.75 -0.2 -0.55
-        rotation 0.5695987726637952 -0.5925471229037897 0.5696008649206385 4.211432273590785
+        rotation -0.6629596851065168 0.3478012118636688 -0.6629621202977072 2.472165639517708
         children [
           USE WHEEL
         ]
         name "BackLeft"
         boundingObject USE WHEEL
         physics USE WHEEL_PHYSICS
-        linearVelocity 0.0001720293388055684 -6.425203021007001e-05 4.080896670238571e-05
-        angularVelocity 1.686989927610127e-05 -3.49663045573389e-06 -1.2616853596788724e-05
+        linearVelocity -8.963402195736613e-05 -2.1586819940215204e-05 -4.0014305365553305e-05
+        angularVelocity 9.575734717632624e-06 4.4567697998675376e-06 4.69828426986069e-05
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 21696.268066301862
+        position 25932.958584765813
         anchor -0.75 -0.2 -0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -210,16 +204,16 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.7499999999999979 -0.19999999999999973 -0.5500000000000017
-        rotation -0.20828559359432286 -0.9556327245822349 -0.20828635867140902 4.667019261065287
+        translation -0.7499999999999979 -0.199999999999998 -0.5499999999999998
+        rotation -0.6701415321450859 -0.3190883178362902 -0.670143993716756 3.759341982476509
         children [
           USE WHEEL
         ]
         name "BackRight"
         boundingObject USE WHEEL
         physics USE WHEEL_PHYSICS
-        linearVelocity 0.00017772933455597554 -4.5699864164857156e-05 4.484817221250983e-05
-        angularVelocity 1.789853885907727e-05 -3.883555436733843e-06 -1.2640735833650267e-05
+        linearVelocity -8.720953767574985e-05 -2.888615676447016e-05 -4.240193497421936e-05
+        angularVelocity 9.993279568049806e-06 4.4485623499375034e-06 4.620671006700257e-05
       }
     }
     Transform {
@@ -247,7 +241,7 @@ Robot {
       rotation -1 0 0 1.5707963267948966
     }
     Compass {
-      rotation -0.5773489358556708 -0.5773509358554485 -0.5773509358554485 2.0944
+      rotation -1.2298304890504849e-06 0.7071072811860348 0.7071062811856371 3.14159
     }
     GPS {
       rotation 0.5773489358556708 0.5773509358554485 0.5773509358554485 -2.094395307179586
@@ -282,8 +276,8 @@ Robot {
   battery [
     0
   ]
-  linearVelocity 0.000177966820173765 -5.6390536933639274e-05 4.2895853903484056e-05
-  angularVelocity 1.4306169969710648e-06 2.3112309766822204e-06 -1.2257946941969266e-05
+  linearVelocity -9.543026488865903e-05 -1.6636373303686728e-05 -3.924792535110689e-05
+  angularVelocity 5.373339802623322e-06 1.4346958990058086e-06 1.7563977118382494e-05
 }
 DEF AR_Tag Solid {
   translation -30.5252 7.95178 43.2884
@@ -853,7 +847,7 @@ DEF AR_Tag Solid {
   description "AR Tag"
 }
 DEF AR_Tag Solid {
-  translation 16.8877 -4.44 -10.7835
+  translation 16.8877 -4.44 -19.2335
   rotation -0.5773509358560258 0.577349935856137 0.577349935856137 2.0944
   children [
     Solid {
@@ -968,7 +962,7 @@ DEF AR_Tag Solid {
   description "AR Tag"
 }
 DEF AR_Tag Solid {
-  translation -13.9122 -6.01 -6.66058
+  translation -13.9122 -0.52 -6.66058
   rotation 0.9831059489266643 0.12942899327603452 0.12942499327624235 -1.5878353071795859
   children [
     Solid {
@@ -1083,7 +1077,7 @@ DEF AR_Tag Solid {
   description "AR Tag"
 }
 DEF AR_Tag Solid {
-  translation 19.3377 -5.09 -10.6535
+  translation 19.3377 -5.09002 -19.3835
   rotation -0.5773509358560258 0.577349935856137 0.577349935856137 2.0944
   children [
     Solid {
@@ -1305,7 +1299,7 @@ DEF AR_Tag Solid {
   description "AR Tag"
 }
 DEF AR_Tag Solid {
-  translation -13.3725 -6 -8.65552
+  translation -13.3725 -1.28 -8.6555
   rotation -0.09269161202508938 0.7040600913392846 0.7040650913399332 2.95673
   children [
     Solid {

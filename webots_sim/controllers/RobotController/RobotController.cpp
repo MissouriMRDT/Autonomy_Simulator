@@ -49,7 +49,7 @@ int main(int argc, char **argv)
       szMainStatsPrint += "Rover Periodic Loop IPS: " + std::to_string(pRover->GetIPS().GetAverageIPS()) + "\n";
       szMainStatsPrint += "RoveCommUDP Node IPS: " + std::to_string(pRoveCommNode->GetIPS().GetAverageIPS()) + "\n";
       // Print out Rover stats.
-      std::cout << szMainStatsPrint << std::endl;
+      // std::cout << szMainStatsPrint << std::endl;
       
       std::this_thread::sleep_for(std::chrono::milliseconds(20));
   };

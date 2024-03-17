@@ -88,6 +88,8 @@ class Rover : public AutonomyThread<void>, public webots::Robot
         float m_fLeftMotorPower;
         float m_fRightMotorPower;
         std::shared_mutex m_muDriveMotorMutex;
+        int m_nColorCombine;
+        std::shared_mutex m_muLEDMutex;
         std::shared_mutex m_muSensorsMutex;
         std::shared_mutex m_muWatchdogMutex;
         std::chrono::system_clock::time_point m_tmWatchdogLastUpdateTime;
@@ -107,6 +109,7 @@ class Rover : public AutonomyThread<void>, public webots::Robot
         /////////////////////////////////////////
         // RoveComm Callbacks.
         /////////////////////////////////////////
+        
         /******************************************************************************
          * @brief Callback function that is called whenever RoveComm receives new Accuracy data.
          *
@@ -131,6 +134,71 @@ class Rover : public AutonomyThread<void>, public webots::Robot
             // Acquire write lock for updating watchdog timer.
             std::unique_lock<std::shared_mutex> lkWatchdogTimerLock(m_muWatchdogMutex);
             m_tmWatchdogLastUpdateTime = std::chrono::system_clock::now();
+        };
+        
+        /******************************************************************************
+         * @brief Callback function that is called whenever RoveComm receives new RGB data.
+         *
+         *
+         * @author clayjay3 (claytonraycowen@gmail.com)
+         * @date 2024-03-03
+         ******************************************************************************/
+        const std::function<void(const rovecomm::RoveCommPacket<uint8_t>&, const sockaddr_in&)> ProcessRGBData =
+            [this](const rovecomm::RoveCommPacket<uint8_t>& stPacket, const sockaddr_in& stdAddr)
+        {
+            // Not using this.
+            (void) stdAddr;
+
+            // Acquire write lock for updating LED/
+            std::unique_lock<std::shared_mutex> lkWriteMotorLock(m_muLEDMutex);
+            // Update LED values.
+            m_nColorCombine = this->CombineRGB(stPacket.vData[0], stPacket.vData[1], stPacket.vData[2]);
+            // Release mutex lock.
+            lkWriteMotorLock.unlock();
+        };
+        
+        /******************************************************************************
+         * @brief Callback function that is called whenever RoveComm receives new StateDisplay data.
+         *
+         *
+         * @author clayjay3 (claytonraycowen@gmail.com)
+         * @date 2024-03-03
+         ******************************************************************************/
+        const std::function<void(const rovecomm::RoveCommPacket<uint8_t>&, const sockaddr_in&)> ProcessStateDisplayData =
+            [this](const rovecomm::RoveCommPacket<uint8_t>& stPacket, const sockaddr_in& stdAddr)
+        {
+            // Not using this.
+            (void) stdAddr;
+
+            
+            // Acquire write lock for updating LED.
+            std::unique_lock<std::shared_mutex> lkWriteMotorLock(m_muLEDMutex);
+            // Determine display state.
+            switch (stPacket.vData[0])
+            {
+                case 0:
+                {
+                    // Teleop Blue
+                    m_nColorCombine = this->CombineRGB(0, 0, 255);
+                    break;
+                }
+                case 1:
+                {
+                    // Autonomy Red
+                    m_nColorCombine = this->CombineRGB(255, 0, 0);
+                    break;
+                }
+                case 2:
+                {
+                    // Goal Green
+                    m_nColorCombine = this->CombineRGB(0, 255, 0);
+                    break;
+                }
+                default:
+                    break;
+            }
+            // Release mutex lock.
+            lkWriteMotorLock.unlock();
         };
 
     public:

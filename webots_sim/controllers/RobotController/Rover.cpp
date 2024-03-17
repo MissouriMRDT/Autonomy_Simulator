@@ -25,6 +25,7 @@ Rover::Rover(rovecomm::RoveCommUDP* pRoveCommUDPNode)
 {
     // Initialize member variables.
     m_pRoveCommUDPNode = pRoveCommUDPNode;
+    m_nColorCombine = 0;
 
     // Create class objects.
     m_pFrontLeftMotor  = this->getMotor(ROVER_FRONTLEFT_MOTOR_NAME);
@@ -45,6 +46,8 @@ Rover::Rover(rovecomm::RoveCommUDP* pRoveCommUDPNode)
     
     // Set RoveComm Callbacks.
     m_pRoveCommUDPNode->AddUDPCallback<float>(ProcessDriveData, manifest::Core::COMMANDS.find("DRIVELEFTRIGHT")->second.DATA_ID);
+    m_pRoveCommUDPNode->AddUDPCallback<uint8_t>(ProcessRGBData, manifest::Core::COMMANDS.find("LEDRGB")->second.DATA_ID);
+    m_pRoveCommUDPNode->AddUDPCallback<uint8_t>(ProcessStateDisplayData, manifest::Core::COMMANDS.find("STATEDISPLAY")->second.DATA_ID);
     
     // Get cameras.
     m_pMainCam = this->getCamera(ROVER_MAINCAM_NAME);
@@ -144,6 +147,13 @@ void Rover::ThreadedContinuousCode()
     m_pBackRightMotor->setVelocity(m_fRightMotorPower);
     // Release locks.
     lkMotorLock.unlock();
+    
+    // Acquire write lock for updating motor powers.
+    std::unique_lock<std::shared_mutex> lkLEDLock(m_muLEDMutex);
+    // Set LED color.
+    m_pLED->set(m_nColorCombine);
+    // Release lock.
+    lkLEDLock.unlock();
     
     // Acquire write lock for getting sensor values.
     std::unique_lock<std::shared_mutex> lkSensorsLock(m_muSensorsMutex);

@@ -27,8 +27,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.2513603201174736 0.5105414937665449 0.8222927535939171 4.307968017064564
-  position 14.171269739443677 38.17249150043753 -56.133821871594755
+  orientation 0.940708793143032 0.03741051810595175 0.33714599157994524 4.680669131192243
+  position -30.11647284442336 -0.956448068193451 -19.427816828437038
   follow "robot"
 }
 TexturedBackground {
@@ -72,8 +72,8 @@ UnevenTerrain {
   randomSeed 987654321
 }
 Robot {
-  translation 3.814408790971599 -2.4357627317617543 -9.889330894576496
-  rotation -0.12838501390070767 0.9906130208316807 0.04693752405535581 1.7340731870968833
+  translation -17.07344658018344 -7.613641926523346 -14.500129063159306
+  rotation 0.2785941763542437 -0.9522978559068203 0.12455552391111895 1.2704989738045611
   children [
     LED {
       translation -7.94961e-13 0.29 -0.43
@@ -81,9 +81,10 @@ Robot {
       children [
         PointLight {
           attenuation 0 0 1
-          color 0 1 0
+          color 0 0 0
           intensity 7
           location 0 0.3 0
+          on FALSE
           radius 0.5
         }
         Shape {
@@ -99,7 +100,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 20806.69775977335
+        position 53266.825844079736
         anchor 0.75 -0.2 0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -108,12 +109,13 @@ Robot {
       device [
         RotationalMotor {
           name "motor1"
+          maxVelocity 18
           maxTorque 100
         }
       ]
       endPoint Solid {
         translation 0.75 -0.2 0.55
-        rotation -0.7068864632411431 -0.024887451522513423 -0.7068890597845905 3.1913571011188115
+        rotation -0.6461465745708479 0.4061848608255549 -0.6461489480038519 2.3699417018937123
         children [
           DEF WHEEL Shape {
             appearance Appearance {
@@ -131,13 +133,13 @@ Robot {
         boundingObject USE WHEEL
         physics DEF WHEEL_PHYSICS Physics {
         }
-        linearVelocity -9.633595739232024e-05 -6.671853015759175e-06 -3.8369555946074724e-05
-        angularVelocity 9.572457015093437e-06 4.61093134668415e-06 4.8845310335007025e-05
+        linearVelocity -0.0001374169362471671 -3.952090899250908e-05 9.058864574207591e-05
+        angularVelocity 1.788523725380989e-05 -9.491531114144026e-06 5.367031950739036e-05
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 24199.48518328705
+        position 56897.49424360586
         anchor -0.75 -0.2 0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -146,25 +148,26 @@ Robot {
       device [
         RotationalMotor {
           name "motor2"
+          maxVelocity 18
           maxTorque 100
         }
       ]
       endPoint Solid {
         translation -0.75 -0.2 0.55
-        rotation -0.7055618220306967 -0.07181399891607046 -0.7050001878385609 3.285088336976743
+        rotation -0.7068562313075498 0.038777130183624234 -0.7062935667528129 3.0640155397837887
         children [
           USE WHEEL
         ]
         name "FrontRight"
         boundingObject USE WHEEL
         physics USE WHEEL_PHYSICS
-        linearVelocity -9.616536238801274e-05 -7.263532860907811e-06 -4.021646567849449e-05
-        angularVelocity 9.89500122706806e-06 4.638651683370701e-06 4.865542968347622e-05
+        linearVelocity -0.00013086538628201178 -3.907770805325328e-05 8.831776846497121e-05
+        angularVelocity 1.6995859358764558e-05 -9.319342025421658e-06 5.129973877394048e-05
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 19111.274405236465
+        position 51565.01495276486
         anchor 0.75 -0.2 -0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -173,25 +176,26 @@ Robot {
       device [
         RotationalMotor {
           name "motor3"
+          maxVelocity 18
           maxTorque 100
         }
       ]
       endPoint Solid {
         translation 0.75 -0.2 -0.55
-        rotation -0.6629596851065168 0.3478012118636688 -0.6629621202977072 2.472165639517708
+        rotation 0.459305895588558 -0.76031219820342 0.459307582716284 4.441725742209333
         children [
           USE WHEEL
         ]
         name "BackLeft"
         boundingObject USE WHEEL
         physics USE WHEEL_PHYSICS
-        linearVelocity -8.963402195736613e-05 -2.1586819940215204e-05 -4.0014305365553305e-05
-        angularVelocity 9.575734717632624e-06 4.4567697998675376e-06 4.69828426986069e-05
+        linearVelocity -0.00013603296589371968 -3.998534409183319e-05 9.59600927518967e-05
+        angularVelocity 1.7962591990152894e-05 -9.506505432057454e-06 5.387641322496902e-05
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 25932.958584765813
+        position 58624.715521470636
         anchor -0.75 -0.2 -0.55
         suspensionSpringConstant 175
         suspensionDampingConstant 20
@@ -200,20 +204,21 @@ Robot {
       device [
         RotationalMotor {
           name "motor4"
+          maxVelocity 18
           maxTorque 100
         }
       ]
       endPoint Solid {
-        translation -0.7499999999999979 -0.199999999999998 -0.5499999999999998
-        rotation -0.6701415321450859 -0.3190883178362902 -0.670143993716756 3.759341982476509
+        translation -0.7499999999999979 -0.19999999999999826 -0.5499999999999992
+        rotation 0.6936926170342567 0.19384935122298091 0.6936951651140386 2.7586449458737414
         children [
           USE WHEEL
         ]
         name "BackRight"
         boundingObject USE WHEEL
         physics USE WHEEL_PHYSICS
-        linearVelocity -8.720953767574985e-05 -2.888615676447016e-05 -4.240193497421936e-05
-        angularVelocity 9.993279568049806e-06 4.4485623499375034e-06 4.620671006700257e-05
+        linearVelocity -0.00012663814506389212 -4.8068123266913964e-05 9.192722905998858e-05
+        angularVelocity 1.6943582715629696e-05 -9.309282214040638e-06 5.116024196891888e-05
       }
     }
     Transform {
@@ -276,8 +281,8 @@ Robot {
   battery [
     0
   ]
-  linearVelocity -9.543026488865903e-05 -1.6636373303686728e-05 -3.924792535110689e-05
-  angularVelocity 5.373339802623322e-06 1.4346958990058086e-06 1.7563977118382494e-05
+  linearVelocity -0.00013228446596515566 -4.1357472763836614e-05 9.076033250284833e-05
+  angularVelocity -3.6005902718453396e-06 -5.332007351648744e-06 -3.5977575553294805e-06
 }
 DEF AR_Tag Solid {
   translation -30.5252 7.95178 43.2884

@@ -31,7 +31,7 @@
 const unsigned int ROVER_TIMESTEP_MS                = 20;       // The amount of time to run the simulation before returning with updated values.
 const unsigned int ROVER_THREAD_MAX_IPS             = 120;      // The max iterations per second of the rover periodic loop.
 const unsigned int ROVER_MOTOR_WATCHDOG_TIMEOUT     = 2;        // Motor watchdog timeout in seconds.
-const float ROVER_MAX_VELOCITY                      = 10;
+const float ROVER_MAX_VELOCITY                      = 18;
 const std::string ROVER_FRONTLEFT_MOTOR_NAME        = "motor1";
 const std::string ROVER_FRONTRIGHT_MOTOR_NAME       = "motor2";
 const std::string ROVER_BACKLEFT_MOTOR_NAME         = "motor3";

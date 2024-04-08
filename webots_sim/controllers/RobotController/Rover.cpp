@@ -66,6 +66,9 @@ Rover::Rover(rovecomm::RoveCommUDP* pRoveCommUDPNode)
     m_pGPS->enable(ROVER_TIMESTEP_MS);
     m_pCompass->enable(ROVER_TIMESTEP_MS);
     m_pLED->set(this->CombineRGB(0, 0, 0));
+    
+    
+    std::srand(static_cast<unsigned int>(std::time(nullptr))); // Seed the random number generator
 
     // Set a max IPS for the rover thread.
     this->SetMainThreadIPSLimit(ROVER_THREAD_MAX_IPS);
@@ -254,10 +257,11 @@ void Rover::PooledLinearCode()
                 stAccuracyPacket.unDataId    = manifest::Nav::TELEMETRY.find("ACCURACYDATA")->second.DATA_ID;
                 stAccuracyPacket.unDataCount = manifest::Nav::TELEMETRY.find("ACCURACYDATA")->second.DATA_COUNT;
                 stAccuracyPacket.eDataType   = manifest::Nav::TELEMETRY.find("ACCURACYDATA")->second.DATA_TYPE;
-                // Fake accuracy data.
-                stAccuracyPacket.vData.emplace_back(0.05);
-                stAccuracyPacket.vData.emplace_back(0.08);
-                stAccuracyPacket.vData.emplace_back(1.0);
+                std::vector<double> vOriginalValues = {0.05, 0.08, 1.0};            
+                for (double dValue : vOriginalValues) {
+                    double dRandomVariation = ((std::rand() % 201) - 100) / 10000.0; // Random variation between -0.01 and 0.01
+                    stAccuracyPacket.vData.emplace_back(dValue + dRandomVariation);
+                }
                 // Send drive command over RoveComm to drive board.
                 m_pRoveCommUDPNode->SendUDPPacket<float>(stAccuracyPacket, "127.0.0.1", manifest::General::ETHERNET_UDP_PORT);
                 break;

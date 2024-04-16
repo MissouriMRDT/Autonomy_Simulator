@@ -23,7 +23,7 @@ int main(int argc, char **argv)
   // Create RoveComm Node.
   rovecomm::RoveCommUDP* pRoveCommNode = new rovecomm::RoveCommUDP();
   // Initialize RoveComm Node.
-  unsigned int unRoveCommPort = 11001;
+  int unRoveCommPort = 11001;
   bool bRoveCommUDPInitSuccess = pRoveCommNode->InitUDPSocket(unRoveCommPort);
   if (bRoveCommUDPInitSuccess)
   {
@@ -40,19 +40,18 @@ int main(int argc, char **argv)
   Rover* pRover = new Rover(pRoveCommNode);
   
 
-  // Main loop:
-  // - perform simulation steps until Webots is stopping the controller
+  // Main loop: - perform simulation steps until Webots is stopping the controller
   while (pRover->GetThreadState() != AutonomyThread<void>::AutonomyThreadState::eStopping) 
   {
       // Assemble Rover stats string.
-      std::string szMainStatsPrint = "";
-      szMainStatsPrint += "Rover Periodic Loop IPS: " + std::to_string(pRover->GetIPS().GetAverageIPS()) + "\n";
-      szMainStatsPrint += "RoveCommUDP Node IPS: " + std::to_string(pRoveCommNode->GetIPS().GetAverageIPS()) + "\n";
+      // std::string szMainStatsPrint = "";
+      // szMainStatsPrint += "Rover Periodic Loop IPS: " + std::to_string(pRover->GetIPS().GetAverageIPS()) + "\n";
+      // szMainStatsPrint += "RoveCommUDP Node IPS: " + std::to_string(pRoveCommNode->GetIPS().GetAverageIPS()) + "\n";
       // Print out Rover stats.
       // std::cout << szMainStatsPrint << std::endl;
       
       std::this_thread::sleep_for(std::chrono::milliseconds(20));
-  };
+  }
   
   delete pRover;
   

@@ -262,6 +262,9 @@ void Rover::PooledLinearCode()
                     double dRandomVariation = ((std::rand() % 201) - 100) / 10000.0; // Random variation between -0.01 and 0.01
                     stAccuracyPacket.vData.emplace_back(dValue + dRandomVariation);
                 }
+                // Add Fix type and diff boolean.
+                stAccuracyPacket.vData.emplace_back(3.0);
+                stAccuracyPacket.vData.emplace_back(1.0);
                 // Send drive command over RoveComm to drive board.
                 m_pRoveCommUDPNode->SendUDPPacket<float>(stAccuracyPacket, "127.0.0.1", manifest::General::ETHERNET_UDP_PORT);
                 break;

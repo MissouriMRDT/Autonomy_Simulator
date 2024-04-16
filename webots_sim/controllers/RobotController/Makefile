@@ -73,11 +73,15 @@ LIBRARIES = -L"./RoveComm_CPP/lib" -lRoveComm_CPP
 # Check OS platform
 OS := $(shell uname)
 
+# Configure threadpool
+CFLAGS += -DBS_THREAD_POOL_ENABLE_PAUSE=1 \
+          -DBS_THREAD_POOL_ENABLE_WAIT_DEADLOCK_CHECK=1
+
 ifeq ($(OS), Linux)
     $(info Building for Linux)
     # Add Linux-specific build commands here
     # Download and run the script package if it doesn't exist.
-    ROVECOMM_VERSION = v24.2.2
+    ROVECOMM_VERSION = v24.2.9
     ROVECOMM_INSTALLER = RoveComm_CPP_AMD64.sh
     
     ifeq ($(wildcard RoveComm_CPP_AMD64.sh),)
@@ -96,7 +100,7 @@ ifeq ($(OS), Linux)
 else
     $(info Building for Windows)
     # Add Windows-specific build commands here
-    ROVECOMM_VERSION = v24.2.2
+    ROVECOMM_VERSION = v24.2.9
     ROVECOMM_INSTALLER = RoveComm_CPP_AMD64.zip
     
     ifeq (,$(wildcard RoveComm_CPP))
